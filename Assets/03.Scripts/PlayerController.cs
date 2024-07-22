@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Security.Cryptography;
 using Unity.Burst.Intrinsics;
+using Unity.VisualScripting;
 using UnityEngine;
+[RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(Rigidbody2D))]
 
-//TODO CharacterController말고 collider rigidbody 기반으로 바꾸기
-[RequireComponent(typeof(CharacterController))]
 /// <summary> </summary>
 /// <remarks>
 ///
@@ -16,22 +15,17 @@ public class PlayerController : MonoBehaviour
     /******* FIELD *******/
     //~ Properties ~//
     [Header("Parameters")]
-    [SerializeField] private float movementSpeed = 0.3f;
-    [SerializeField] private float jumpForce = 1.0f;
+    [SerializeField] private float moveSpeed = 10.0f;
+    [SerializeField] private float maxSpeed = 10.0f;
+    [SerializeField] private float jumpForce = 5.0f;
 
     [Space]
-    [SerializeField] private Collider2D hitbox;
-
     //~ Bindings ~//
-    private CharacterController characterController;
+    private Rigidbody2D rig;
 
     //~ For Funcs ~//
-    [Header("Debug")]
-    private float freefallSpeed = 0;
-    private bool jumpOrder;
-
     private int moveDir;
-    private Vector2 moveVector = Vector2.zero;
+    private bool jumpOrder = false;
 
     //~ Delegate & Event ~//
 
@@ -40,23 +34,20 @@ public class PlayerController : MonoBehaviour
     /******* EVENT FUNC *******/
     private void Awake() 
     {
-        characterController = GetComponent<CharacterController>();
+        rig = GetComponent<Rigidbody2D>();
     }
 
     private void Update() 
     {
-        GetKeyInput();
+        GetInput();
     }
 
     private void FixedUpdate() 
     {
         Move();
-        Gravity();
         Jump();
-
-        characterController.Move(moveVector * Time.deltaTime);
     }
-    
+
     /******* INTERFACE IMPLEMENT *******/
 
     /******* METHOD *******/
@@ -67,8 +58,7 @@ public class PlayerController : MonoBehaviour
     /// </remarks>
     /// <param name="paraName"> param description </param>
     /// <returns>  </returns>
-    
-    private void GetKeyInput()
+    private void GetInput()
     {
         moveDir = (int)Input.GetAxisRaw("Horizontal");
         if(Input.GetButtonDown("Jump")) jumpOrder = true;
@@ -76,22 +66,21 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        moveVector.x = moveDir * movementSpeed;
-    }
-
-    private void Gravity()
-    {
-        Vector2 origin = transform.position;
-        origin.y -= characterController.bounds.extents.y;
-
-        RaycastHit2D isGrounded = Physics2D.Raycast(origin, Vector2.down, characterController.skinWidth, LayerMask.GetMask("Ground"));
-        if(isGrounded) 
+        switch(moveDir)
         {
-            moveVector.y = 0;
-        }
-        else
-        {
-            moveVector += Physics2D.gravity;
+            case  1: 
+            rig.AddForce(Vector2.right * moveSpeed, ForceMode2D.Impulse);
+            rig.velocity = new Vector2(Mathf.Min(rig.velocity.x, maxSpeed), rig.velocity.y);
+            break;
+            
+            case -1: 
+            rig.AddForce(Vector2.left * moveSpeed, ForceMode2D.Impulse);
+            rig.velocity = new Vector2(Mathf.Max(rig.velocity.x, -maxSpeed), rig.velocity.y);
+            break;
+            
+            case  0: 
+            rig.velocity = new Vector2(0, rig.velocity.y);
+            break;
         }
     }
 
@@ -99,8 +88,10 @@ public class PlayerController : MonoBehaviour
     {
         if(jumpOrder)
         {
+            rig.velocity = new Vector2(rig.velocity.x, 0);
+            rig.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+
             jumpOrder = false;
-            moveVector.y = jumpForce;
         }
     }
 

@@ -1164,11 +1164,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50696e267c5bb304eb23dc79f5232e60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveAcceleration: 10
-  maxSpeed: 20
-  jumpForce: 20
-  maxJumpCount: 1
-  maxFreeFall: -20
+  playerConfig: {fileID: 11400000, guid: b2e95916d1aa1d54a94f5c824c8b817a, type: 2}
+  moveAcceleration: 0
+  maxSpeed: 0
+  jumpForce: 0
+  maxJumpCount: 0
+  maxFreeFall: 0
   isGrounded: 0
   velocity: {x: 0, y: 0}
 --- !u!61 &1371836720

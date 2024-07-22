@@ -1,8 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Burst.Intrinsics;
-using Unity.VisualScripting;
 using UnityEngine;
+
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
 
@@ -15,13 +14,16 @@ public class PlayerController : MonoBehaviour
     /******* FIELD *******/
     //~ Properties ~//
     [Header("Parameters")]
-    [SerializeField] private float moveAcceleration = 10.0f;
-    [SerializeField] private float maxSpeed = 20.0f;
+    [SerializeField] private PlayerConfig playerConfig;
 
         [Space]
-    [SerializeField] private float jumpForce = 20.0f;
-    [SerializeField] private int maxJumpCount = 1;
-    [SerializeField] private float maxFreeFall = -20.0f;
+    [SerializeField] private float moveAcceleration;
+    [SerializeField] private float maxSpeed;
+
+        [Space]
+    [SerializeField] private float jumpForce;
+    [SerializeField] private int maxJumpCount;
+    [SerializeField] private float maxFreeFall;
 
     [Space]
     //~ Bindings ~//
@@ -45,6 +47,19 @@ public class PlayerController : MonoBehaviour
     {
         rig = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
+
+        if(playerConfig)
+        {
+            this.moveAcceleration = playerConfig.MoveAcceleration;
+            this.maxSpeed         = playerConfig.MaxSpeed;
+
+            this.jumpForce        = playerConfig.JumpForce;
+            this.maxJumpCount     = playerConfig.MaxJumpCount;
+            this.maxFreeFall      = playerConfig.MaxFreeFall;
+
+            this.rig.mass         = playerConfig.Mass;
+            this.rig.gravityScale = playerConfig.GravityScale;
+        }
     }
 
     private void Update() 

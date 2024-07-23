@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
@@ -13,7 +14,7 @@ public class PlayerController : MonoBehaviour
 {
     /******* FIELD *******/
     //~ Properties ~//
-    [Header("Parameters")]
+    [Header("Player Parameters")]
     [SerializeField] private PlayerConfig playerConfig;
 
         [Space]

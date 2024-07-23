@@ -18,4 +18,4 @@ MonoBehaviour:
   MaxSpeed: 20
   JumpForce: 20
   MaxJumpCount: 1
-  MaxFreeFall: -20
+  MaxFreeFall: -30

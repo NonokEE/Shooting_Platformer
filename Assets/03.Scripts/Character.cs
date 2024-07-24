@@ -5,7 +5,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
 
-/// <summary>체력을 가지고 피해를 받을 수 있는 개체</summary>
+/// <summary>체력을 가지고 피해를 받을 수 있는 개체. </summary>
 /// <remarks>
 ///
 /// </remarks>
@@ -56,7 +56,7 @@ public class Character : MonoBehaviour
     //~ External ~//
     public void Hit(Attack attack)
     {
-        Debug.Log(name + " got damaged by " + attack.name);
+        Debug.Log(name + " got damaged by " + attack.Attacker.name);
         currentHp -= attack.DamageValue;
     }
 }

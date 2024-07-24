@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8c47d6522ef74a844b2b1b48b790fa6f, type: 3}
-  m_Name: BaseConfig
+  m_Name: StandardGravityConfig
   m_EditorClassIdentifier: 
   Mass: 1
   GravityScale: 5

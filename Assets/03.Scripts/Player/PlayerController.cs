@@ -18,15 +18,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerConfig playerConfig;
 
         [Space]
-    [SerializeField] private float moveAcceleration;
-    [SerializeField] private float maxSpeed;
-
-        [Space]
-    [SerializeField] private float jumpForce;
-    [SerializeField] private int maxJumpCount;
-    [SerializeField] private float maxFreeFall;
-
-    [Space]
     //~ Bindings ~//
     private Rigidbody2D rig;
     private Collider2D col;
@@ -49,18 +40,9 @@ public class PlayerController : MonoBehaviour
         rig = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
 
-        if(playerConfig)
-        {
-            this.moveAcceleration = playerConfig.MoveAcceleration;
-            this.maxSpeed         = playerConfig.MaxSpeed;
-
-            this.jumpForce        = playerConfig.JumpForce;
-            this.maxJumpCount     = playerConfig.MaxJumpCount;
-            this.maxFreeFall      = playerConfig.MaxFreeFall;
-
-            this.rig.mass         = playerConfig.Mass;
-            this.rig.gravityScale = playerConfig.GravityScale;
-        }
+        this.rig.mass         = playerConfig.Mass;
+        this.rig.gravityScale = playerConfig.GravityScale;
+        this.rig.bodyType     = playerConfig.BodyType;
     }
 
     private void Update() 
@@ -68,6 +50,7 @@ public class PlayerController : MonoBehaviour
         GetInput();
         M_Debug();
     }
+
 
     private void FixedUpdate() 
     {
@@ -87,6 +70,7 @@ public class PlayerController : MonoBehaviour
     /// </remarks>
     /// <param name="paraName"> param description </param>
     /// <returns>  </returns>
+    /// 
     private void GetInput()
     {
         moveDir = (int)Input.GetAxisRaw("Horizontal");
@@ -98,13 +82,13 @@ public class PlayerController : MonoBehaviour
         switch(moveDir)
         {
             case  1:
-            rig.AddForce(Vector2.right * moveAcceleration, ForceMode2D.Impulse);
-            rig.velocity = new Vector2(Mathf.Min(rig.velocity.x, maxSpeed), rig.velocity.y);
+            rig.AddForce(Vector2.right * playerConfig.MoveAcceleration, ForceMode2D.Impulse);
+            rig.velocity = new Vector2(Mathf.Min(rig.velocity.x, playerConfig.MaxSpeed), rig.velocity.y);
             break;
             
             case -1:
-            rig.AddForce(Vector2.left * moveAcceleration, ForceMode2D.Impulse);
-            rig.velocity = new Vector2(Mathf.Max(rig.velocity.x, -maxSpeed), rig.velocity.y);
+            rig.AddForce(Vector2.left * playerConfig.MoveAcceleration, ForceMode2D.Impulse);
+            rig.velocity = new Vector2(Mathf.Max(rig.velocity.x, -playerConfig.MaxSpeed), rig.velocity.y);
             break;
             
             case  0:
@@ -117,13 +101,13 @@ public class PlayerController : MonoBehaviour
     {
         if(isGrounded)
         {
-            currentJumpCount = maxJumpCount;
+            currentJumpCount = playerConfig.MaxJumpCount;
         }
 
         if(jumpOrder && (currentJumpCount > 0))
         {
             rig.velocity = new Vector2(rig.velocity.x, 0);
-            rig.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+            rig.AddForce(new Vector2(0, playerConfig.JumpForce), ForceMode2D.Impulse);
 
 
             if(!isGrounded) currentJumpCount -= 1;
@@ -140,9 +124,9 @@ public class PlayerController : MonoBehaviour
 
     private void LimitFreeFall()
     {
-        if(maxFreeFall != 0)
+        if(playerConfig.MaxFreeFall != 0)
         {
-            if(rig.velocity.y < 0) rig.velocity = new Vector2(rig.velocity.x, Mathf.Max(rig.velocity.y, maxFreeFall));
+            if(rig.velocity.y < 0) rig.velocity = new Vector2(rig.velocity.x, Mathf.Max(rig.velocity.y, playerConfig.MaxFreeFall));
         }
     }
 

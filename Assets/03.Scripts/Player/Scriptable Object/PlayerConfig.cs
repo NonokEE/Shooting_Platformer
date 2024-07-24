@@ -14,6 +14,7 @@ public class PlayerConfig : ScriptableObject
     [Header("Rigidbody Parameters")]
     public float Mass;
     public float GravityScale;
+    public RigidbodyType2D BodyType;
 
     [Header("Controller Parameters")]
     public float MoveAcceleration;

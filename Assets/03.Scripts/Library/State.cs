@@ -28,9 +28,4 @@ public class State<T_Sender>
         Name = name;
         StateValue = stateValue;
     }
-
-    public void Test()
-    {
-
-    }
 }

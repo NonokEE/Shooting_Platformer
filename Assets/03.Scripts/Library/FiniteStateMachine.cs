@@ -78,6 +78,7 @@ public class FiniteStateMachine<T_Sender, T_State> where T_Sender : MonoBehaviou
             {
                 SetUpdate = false;
             }
+
             CurrentState.OnExit.Invoke();
 
             if(transitions.ContainsKey(cur) && transitions[cur].ContainsKey(next)) 

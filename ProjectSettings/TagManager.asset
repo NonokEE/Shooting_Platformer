@@ -37,8 +37,20 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Panel UI
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2855909803
+    locked: 0
+  - name: Terrain
+    uniqueID: 2627597067
+    locked: 0
+  - name: Character
+    uniqueID: 834036253
+    locked: 0
+  - name: FX
+    uniqueID: 1220011875
     locked: 0

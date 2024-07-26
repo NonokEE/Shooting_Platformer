@@ -11,8 +11,11 @@ public partial class GameManager : MonoBehaviour
 {
     /******* FIELD *******/
     //~ Properties ~//
+    private InputManager inputManager = null;
+    public InputManager InputManager { get { return inputManager; } }
 
     //~ Bindings ~//
+    [SerializeField] private Transform managerFolder;
 
     //~ For Funcs ~//
 
@@ -35,12 +38,12 @@ public partial class GameManager : MonoBehaviour
         }
     }
 
-
     /******* EVENT FUNC *******/
     private void Awake() 
     {
         SetSingleton();
         InitiateStateMachine();
+        InitiateManagers();
     }
 
     /******* INTERFACE IMPLEMENT *******/
@@ -53,6 +56,13 @@ public partial class GameManager : MonoBehaviour
     /// </remarks>
     /// <param name="paraName"> param description </param>
     /// <returns>  </returns>
+    private void InitiateManagers()
+    {
+        if(inputManager == null)
+        {
+            inputManager = Instantiate(new GameObject("InputManager"), managerFolder).AddComponent<InputManager>();
+        }
+    }
 
     //~ Event Listener ~//
 

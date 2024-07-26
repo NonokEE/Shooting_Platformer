@@ -19,7 +19,7 @@ public class Debugger : MonoBehaviour
     /******* EVENT FUNC *******/
     private void Awake() 
     {
-        Debug.Log(GameManager.Inst.name);
+        
     }
 }
 

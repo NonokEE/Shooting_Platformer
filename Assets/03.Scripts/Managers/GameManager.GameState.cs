@@ -10,7 +10,7 @@ using UnityEngine;
 /// </remarks>
 public partial class GameManager
 {
-    public enum GameState { Playing, Pause }
+    public enum GameState { Loading, Playing, Pause }
     public GameState State
     {
         get { return Enum.Parse<GameState>(fsm.CurrentState.Name); }
@@ -20,9 +20,10 @@ public partial class GameManager
     public FiniteStateMachine<GameManager, GameState> fsm;
     private void InitiateStateMachine()
     {
-        fsm = new FiniteStateMachine<GameManager, GameState>(this, GameState.Playing);
+        fsm = new FiniteStateMachine<GameManager, GameState>(this, GameState.Loading);
 
         fsm.AddEvent(GameState.Pause, FiniteStateMachine<GameManager, GameState>.EventType.Enter, () => { Time.timeScale = 0; });
         fsm.AddEvent(GameState.Pause, FiniteStateMachine<GameManager, GameState>.EventType.Exit, () => { Time.timeScale = 1.0f; });
+        fsm.SetStatus(GameState.Playing);
     }
 }

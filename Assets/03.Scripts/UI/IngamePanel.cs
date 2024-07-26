@@ -11,6 +11,7 @@ public class IngamePanel : MonoBehaviour
 {
     /******* FIELD *******/
     //~ Properties ~//
+    [SerializeField] private RectTransform content;
 
     //~ Bindings ~//
 
@@ -21,12 +22,12 @@ public class IngamePanel : MonoBehaviour
     //~ Debug ~//
 
     /******* EVENT FUNC *******/
-    private void Awake() 
+    private void Start()
     {
-        var fsm = GameManager.Inst.fsm;
+        content.gameObject.SetActive(false);        
 
-        fsm.AddEvent(GameManager.GameState.Pause, FiniteStateMachine<GameManager, GameManager.GameState>.EventType.Enter, EnterPause);
-        fsm.AddEvent(GameManager.GameState.Pause, FiniteStateMachine<GameManager, GameManager.GameState>.EventType.Exit, ExitPause);
+        GameManager.Inst.fsm.AddEvent(GameManager.GameState.Pause, FiniteStateMachine<GameManager, GameManager.GameState>.EventType.Enter, EnterPause);
+        GameManager.Inst.fsm.AddEvent(GameManager.GameState.Pause, FiniteStateMachine<GameManager, GameManager.GameState>.EventType.Exit, ExitPause);
     }
 
     /******* INTERFACE IMPLEMENT *******/
@@ -42,11 +43,11 @@ public class IngamePanel : MonoBehaviour
     ///
     private void EnterPause()
     {
-        Debug.Log("Panel: Enter Pause"); gameObject.SetActive(true);
+        Debug.Log("Panel: Enter Pause"); content.gameObject.SetActive(true);
     }
     private void ExitPause()
     {
-        Debug.Log("Panel: Exit  Pause"); gameObject.SetActive(false);
+        Debug.Log("Panel: Exit  Pause"); content.gameObject.SetActive(false);
     }
 
     //~ Event Listener ~//

@@ -21,5 +21,8 @@ public partial class GameManager
     private void InitiateStateMachine()
     {
         fsm = new FiniteStateMachine<GameManager, GameState>(this, GameState.Playing);
+
+        fsm.AddEvent(GameState.Pause, FiniteStateMachine<GameManager, GameState>.EventType.Enter, () => { Time.timeScale = 0; });
+        fsm.AddEvent(GameState.Pause, FiniteStateMachine<GameManager, GameState>.EventType.Exit, () => { Time.timeScale = 1.0f; });
     }
 }

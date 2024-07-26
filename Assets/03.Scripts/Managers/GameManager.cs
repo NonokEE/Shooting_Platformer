@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
-
+using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary> </summary>
 /// <remarks>
 ///
 /// </remarks>
-public class GameManager : MonoBehaviour
+public partial class GameManager : MonoBehaviour
 {
     /******* FIELD *******/
     //~ Properties ~//
@@ -20,7 +20,28 @@ public class GameManager : MonoBehaviour
 
     //~ Debug ~//
 
+    //~ Singleton ~//
+    public static GameManager Inst = null;
+    private void SetSingleton()
+    {
+        if(Inst == null)
+        {
+            Inst = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+
     /******* EVENT FUNC *******/
+    private void Awake() 
+    {
+        SetSingleton();
+        InitiateStateMachine();
+    }
 
     /******* INTERFACE IMPLEMENT *******/
 

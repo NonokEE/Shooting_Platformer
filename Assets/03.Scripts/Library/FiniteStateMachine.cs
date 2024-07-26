@@ -46,6 +46,17 @@ public class FiniteStateMachine<T_Sender, T_State> where T_Sender : MonoBehaviou
         }
     }
 
+    //TODO action이 없는 경우에 대한 예외처리
+    public void RemoveEvent(T_State state, EventType eventType, Action action)
+    {
+        switch(eventType)
+        {
+            case EventType.Enter : states[state].OnEnter  -= action; break;
+            case EventType.Exit  : states[state].OnExit   -= action; break;
+            case EventType.Update: states[state].OnUpdate -= action; break;
+        }
+    }
+
     public void AddTransition(T_State depart, T_State dest, Action action)
     {
         if(Enum.Equals(depart, dest)) 
@@ -53,15 +64,23 @@ public class FiniteStateMachine<T_Sender, T_State> where T_Sender : MonoBehaviou
             Debug.LogWarning(sender.name + "'s FSM of " + nameof(T_State) + " is trying to add transition about same state: " + depart);
             return;
         }
+
+        if(!transitions.ContainsKey(depart)) transitions.Add(depart, new Dictionary<T_State, Action>());    
+        if(!transitions[depart].ContainsKey(dest)) transitions[depart].Add(dest, ()=>{});
         
-        if(!transitions.ContainsKey(depart))
+        transitions[depart][dest] += action;
+    }
+
+    //TODO transition이 없는 경우에 대한 예외처리
+    //TODO action이 없는 경우에 대한 예외처리
+    public void RemoveTransition(T_State depart, T_State dest, Action action)
+    {
+        if(Enum.Equals(depart, dest)) 
         {
-            transitions.Add(depart, new Dictionary<T_State, Action>());    
+            Debug.LogWarning(sender.name + "'s FSM of " + nameof(T_State) + " is trying to operate remove transition about same state: " + depart);
+            return;
         }
-        if(!transitions[depart].ContainsKey(dest))
-        {
-            transitions[depart].Add(dest, action);
-        } 
+        transitions[depart][dest] -= action;
     }
 
     public void SetStatus(T_State next)

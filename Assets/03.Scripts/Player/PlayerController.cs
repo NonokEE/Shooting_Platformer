@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 
+using Unity.VisualScripting;
 using UnityEngine;
+
+using PlayerStrategy.PlayerWeapon;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
-
 /// <summary> </summary>
 /// <remarks>
 ///
@@ -22,6 +24,8 @@ public class PlayerController : MonoBehaviour
     //~ Bindings ~//
     private Rigidbody2D rig;
     private Collider2D col;
+
+    private PlayerWeapon weapon;
 
     //~ For Funcs ~//
     private int moveDir;
@@ -44,6 +48,9 @@ public class PlayerController : MonoBehaviour
         rig.mass         = playerControllerConfig.Mass;
         rig.gravityScale = playerControllerConfig.GravityScale;
         rig.bodyType     = playerControllerConfig.BodyType;
+
+        //DEBUG
+        weapon = gameObject.AddComponent<BasicGlock>();
     }
 
     private void Update() 
@@ -74,8 +81,19 @@ public class PlayerController : MonoBehaviour
     /// 
     private void GetInput()
     {
+        // Move
         moveDir = (int)Input.GetAxisRaw("Horizontal");
         if(Input.GetButtonDown("Jump")) jumpOrder = true;
+
+        // Weapon
+        if(Input.GetMouseButtonDown((int)MouseButton.Left)) weapon.OnLeftDown();
+        if(Input.GetMouseButton    ((int)MouseButton.Left)) weapon.OnLeftHold();
+        if(Input.GetMouseButtonUp  ((int)MouseButton.Left)) weapon.OnLeftUp();
+
+        if(Input.GetMouseButtonDown((int)MouseButton.Right)) weapon.OnRightDown();
+        if(Input.GetMouseButton    ((int)MouseButton.Right)) weapon.OnRightHold();
+        if(Input.GetMouseButtonUp  ((int)MouseButton.Right)) weapon.OnRightUp();
+
     }
 
     private void Move()

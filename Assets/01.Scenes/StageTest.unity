@@ -2117,7 +2117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 169970108}
-  playerConfig: {fileID: 11400000, guid: b2e95916d1aa1d54a94f5c824c8b817a, type: 2}
+  playerControllerConfig: {fileID: 11400000, guid: b2e95916d1aa1d54a94f5c824c8b817a, type: 2}
   isGrounded: 0
   velocity: {x: 0, y: 0}
 --- !u!50 &2064013987

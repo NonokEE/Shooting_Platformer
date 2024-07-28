@@ -9,7 +9,7 @@ using UnityEngine;
 /// </remarks>
 
 [CreateAssetMenu(fileName = "PlayerConfig", menuName = "Scriptable Object/PlayerConfig", order = 0)]
-public class PlayerConfig : ScriptableObject
+public class PlayerControllerConfig : ScriptableObject
 {
     [Header("Rigidbody Parameters")]
     public float Mass;

@@ -1,42 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
-
+using Stage;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-
-/// <summary> </summary>
-/// <remarks>
-///
-/// </remarks>
+[RequireComponent(typeof(Rigidbody2D))]
 public class HitBox : MonoBehaviour
 {
     /******* FIELD *******/
-    //~ Properties ~//
-
     //~ Bindings ~//
-    private Character character;
-    private Collider2D col;
-
-    //~ For Funcs ~//
-
-    //~ Delegate & Event ~//
-
-    //~ Debug ~//
+    private IStageObject owner;
 
     /******* EVENT FUNC *******/
     private void Awake() 
     {
-        character = transform.GetComponentInParent<Character>();
-        col = GetComponent<Collider2D>();
+        
     }
-
-    private void OnTriggerEnter2D(Collider2D other) 
+    public virtual void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.layer == LayerMask.NameToLayer("Attack"))
-        {
-            character.Hit(other.GetComponent<Attack>());
-        }
+        
     }
 
     /******* INTERFACE IMPLEMENT *******/

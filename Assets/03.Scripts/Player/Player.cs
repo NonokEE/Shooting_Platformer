@@ -3,18 +3,17 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-using DG.Tweening;
-
 /// <summary> </summary>
 /// <remarks>
 ///
 /// </remarks>
-public class TesterDT : MonoBehaviour
+public class Player : Character
 {
     /******* FIELD *******/
     //~ Properties ~//
 
     //~ Bindings ~//
+    private PlayerController playerController;
 
     //~ For Funcs ~//
 
@@ -23,15 +22,6 @@ public class TesterDT : MonoBehaviour
     //~ Debug ~//
 
     /******* EVENT FUNC *******/
-    private void Awake() 
-    {
-        transform.DOMove(Vector3.left, 1).From();
-    }
-
-    private void Update() 
-    {
-        
-    }
 
     /******* INTERFACE IMPLEMENT *******/
 

@@ -15,7 +15,8 @@ public class PlayerController : MonoBehaviour
     /******* FIELD *******/
     //~ Properties ~//
     [Header("Player Parameters")]
-    [SerializeField] private PlayerConfig playerConfig;
+    [SerializeField] private Player player;
+    [SerializeField] private PlayerControllerConfig playerControllerConfig;
 
         [Space]
     //~ Bindings ~//
@@ -40,9 +41,9 @@ public class PlayerController : MonoBehaviour
         rig = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
 
-        this.rig.mass         = playerConfig.Mass;
-        this.rig.gravityScale = playerConfig.GravityScale;
-        this.rig.bodyType     = playerConfig.BodyType;
+        rig.mass         = playerControllerConfig.Mass;
+        rig.gravityScale = playerControllerConfig.GravityScale;
+        rig.bodyType     = playerControllerConfig.BodyType;
     }
 
     private void Update() 
@@ -82,13 +83,13 @@ public class PlayerController : MonoBehaviour
         switch(moveDir)
         {
             case  1:
-            rig.AddForce(Vector2.right * playerConfig.MoveAcceleration, ForceMode2D.Impulse);
-            rig.velocity = new Vector2(Mathf.Min(rig.velocity.x, playerConfig.MaxSpeed), rig.velocity.y);
+            rig.AddForce(Vector2.right * playerControllerConfig.MoveAcceleration, ForceMode2D.Impulse);
+            rig.velocity = new Vector2(Mathf.Min(rig.velocity.x, playerControllerConfig.MaxSpeed), rig.velocity.y);
             break;
             
             case -1:
-            rig.AddForce(Vector2.left * playerConfig.MoveAcceleration, ForceMode2D.Impulse);
-            rig.velocity = new Vector2(Mathf.Max(rig.velocity.x, -playerConfig.MaxSpeed), rig.velocity.y);
+            rig.AddForce(Vector2.left * playerControllerConfig.MoveAcceleration, ForceMode2D.Impulse);
+            rig.velocity = new Vector2(Mathf.Max(rig.velocity.x, -playerControllerConfig.MaxSpeed), rig.velocity.y);
             break;
             
             case  0:
@@ -101,13 +102,13 @@ public class PlayerController : MonoBehaviour
     {
         if(isGrounded)
         {
-            currentJumpCount = playerConfig.MaxJumpCount;
+            currentJumpCount = playerControllerConfig.MaxJumpCount;
         }
 
         if(jumpOrder && (currentJumpCount > 0))
         {
             rig.velocity = new Vector2(rig.velocity.x, 0);
-            rig.AddForce(new Vector2(0, playerConfig.JumpForce), ForceMode2D.Impulse);
+            rig.AddForce(new Vector2(0, playerControllerConfig.JumpForce), ForceMode2D.Impulse);
 
 
             if(!isGrounded) currentJumpCount -= 1;
@@ -124,9 +125,9 @@ public class PlayerController : MonoBehaviour
 
     private void LimitFreeFall()
     {
-        if(playerConfig.MaxFreeFall != 0)
+        if(playerControllerConfig.MaxFreeFall != 0)
         {
-            if(rig.velocity.y < 0) rig.velocity = new Vector2(rig.velocity.x, Mathf.Max(rig.velocity.y, playerConfig.MaxFreeFall));
+            if(rig.velocity.y < 0) rig.velocity = new Vector2(rig.velocity.x, Mathf.Max(rig.velocity.y, playerControllerConfig.MaxFreeFall));
         }
     }
 

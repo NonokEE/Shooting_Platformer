@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-using PlayerStrategy.PlayerWeapon;
+using Stage;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rig;
     private Collider2D col;
 
-    private PlayerWeapon weapon;
+    private Weapon weapon;
 
     //~ For Funcs ~//
     private int moveDir;
@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
 
         //DEBUG
         weapon = gameObject.AddComponent<BasicGlock>();
+        weapon.Owner = player;
     }
 
     private void Update() 
@@ -86,14 +87,13 @@ public class PlayerController : MonoBehaviour
         if(Input.GetButtonDown("Jump")) jumpOrder = true;
 
         // Weapon
-        if(Input.GetMouseButtonDown((int)MouseButton.Left)) weapon.OnLeftDown();
-        if(Input.GetMouseButton    ((int)MouseButton.Left)) weapon.OnLeftHold();
-        if(Input.GetMouseButtonUp  ((int)MouseButton.Left)) weapon.OnLeftUp();
+        if(Input.GetMouseButtonDown((int)MouseButton.Left)) weapon.OnLeftDown(player);
+        if(Input.GetMouseButton    ((int)MouseButton.Left)) weapon.OnLeftHold(player);
+        if(Input.GetMouseButtonUp  ((int)MouseButton.Left)) weapon.OnLeftUp(player);
 
-        if(Input.GetMouseButtonDown((int)MouseButton.Right)) weapon.OnRightDown();
-        if(Input.GetMouseButton    ((int)MouseButton.Right)) weapon.OnRightHold();
-        if(Input.GetMouseButtonUp  ((int)MouseButton.Right)) weapon.OnRightUp();
-
+        if(Input.GetMouseButtonDown((int)MouseButton.Right)) weapon.OnRightDown(player);
+        if(Input.GetMouseButton    ((int)MouseButton.Right)) weapon.OnRightHold(player);
+        if(Input.GetMouseButtonUp  ((int)MouseButton.Right)) weapon.OnRightUp(player);
     }
 
     private void Move()

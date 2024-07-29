@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -21,5 +22,41 @@ namespace Stage
     {
         public int CurrentHp { get; }
         public int MaxHp { get; }
+    }
+
+    /// <summary>
+    /// 무기
+    /// </summary>
+    public class Weapon: MonoBehaviour
+    {
+        public Character Owner;
+
+        public Action<Character> OnLeftDown = (owner) => {};
+        public Action<Character> OnLeftHold = (owner) => {};
+        public Action<Character> OnLeftUp = (owner) => {};
+
+        public Action<Character> OnRightDown = (owner) => {};
+        public Action<Character> OnRightHold = (owner) => {};
+        public Action<Character> OnRightUp = (owner) => {};
+    };
+
+    /// <summary>
+    /// 공격 객체
+    /// </summary>
+    [RequireComponent(typeof(Collider2D))]
+    [RequireComponent(typeof(Rigidbody2D))]
+    public class Attack: MonoBehaviour
+    {
+        //
+        public Character Attacker;
+
+        //
+        public Action<Collision2D> attackEnter = (other) => {};
+        public Action<Collision2D> attackStay = (other) => {};
+        public Action<Collision2D> attackExit = (other) => {};
+
+        protected virtual void OnCollisionEnter2D(Collision2D other){ attackEnter(other); }
+        protected virtual void OnCollisionStay2D(Collision2D other) { attackStay(other);}
+        protected virtual void OnCollisionExit2D(Collision2D other) { attackExit(other); }
     }
 }

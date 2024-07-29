@@ -3,14 +3,15 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-using PlayerStrategy.PlayerWeapon;
+using Stage;
 
 /// <summary> </summary>
 /// <remarks>
 ///
 /// </remarks>
-public class BasicGlock : PlayerWeapon
+public class BasicBullet : Attack
 {
+
     /******* FIELD *******/
     //~ Properties ~//
 
@@ -23,12 +24,20 @@ public class BasicGlock : PlayerWeapon
     //~ Debug ~//
 
     /******* EVENT FUNC *******/
+    private void Awake()
+    {
+        attackEnter += (other) => 
+        {
+            Character target = other.gameObject.GetComponent<Character>();
+            if(target != Attacker)
+            {
+                target.Hit(this);
+                Destroy(gameObject);
+            }
+        };
+    }
 
     /******* INTERFACE IMPLEMENT *******/
-    protected override void Initiate()
-    {
-        leftDown = new BasicGlockLeftDown();
-    }
 
     /******* METHOD *******/
     //~ Internal ~//
@@ -42,12 +51,4 @@ public class BasicGlock : PlayerWeapon
     //~ Event Listener ~//
 
     //~ External ~//
-}
-
-public class BasicGlockLeftDown : ILeftDown
-{
-    public void Trigger()
-    {
-        Debug.Log("Basic Glock Left Down");
-    }
 }

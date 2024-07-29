@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using Stage;
 using UnityEngine;
+
+using Stage;
 
 [RequireComponent(typeof(HitBox))]
 /// <summary>체력을 가지고 피해를 받을 수 있는 개체. </summary>
@@ -56,6 +57,6 @@ public class Character : MonoBehaviour, IKillable, IStageObject
     public void Hit(Attack attack)
     {
         Debug.Log(name + " got damaged by " + attack.Attacker.name);
-        currentHp -= attack.DamageValue;
+        //TODO Attack 피드백
     }
 }

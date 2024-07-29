@@ -2,27 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
+using Unity.VisualScripting;
 
-[RequireComponent(typeof(Collider2D))]
+using Stage;
 
 /// <summary> </summary>
 /// <remarks>
 ///
 /// </remarks>
-public class Attack : MonoBehaviour
+public class BasicGlock : Weapon
 {
+
     /******* FIELD *******/
     //~ Properties ~//
-    [Header("Attack Attributes")]
-    [SerializeField] private Character attacker;
-    public Character Attacker { get{ return attacker; } }
-
-    //Temp Value//
-    public int DamageValue = 10;
 
     //~ Bindings ~//
-    private Collider2D col;
-    
+    [SerializeField] private Attack leftAttack;
+
     //~ For Funcs ~//
 
     //~ Delegate & Event ~//
@@ -30,12 +26,15 @@ public class Attack : MonoBehaviour
     //~ Debug ~//
 
     /******* EVENT FUNC *******/
-    private void Awake() 
-    {
-        col = GetComponent<Collider2D>();
-    }
-
+    
     /******* INTERFACE IMPLEMENT *******/
+    private void Awake()
+    {
+        leftAttack = Resources.Load("Weapon/NormalBullet").AddComponent<Attack>();
+
+        OnLeftDown += (Owner) => { LeftDown(); };
+    }
+    
 
     /******* METHOD *******/
     //~ Internal ~//
@@ -45,6 +44,10 @@ public class Attack : MonoBehaviour
     /// </remarks>
     /// <param name="paraName"> param description </param>
     /// <returns>  </returns>
+    private void LeftDown()
+    {
+        Instantiate(leftAttack, transform.position, transform.rotation);
+    }
 
     //~ Event Listener ~//
 

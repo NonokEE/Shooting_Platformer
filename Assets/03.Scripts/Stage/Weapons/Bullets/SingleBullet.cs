@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -5,7 +6,6 @@ using UnityEngine;
 
 using DG.Tweening;
 using Stage;
-using System;
 /// <summary> 적중시 1회만 피해를 주는 투사체 공격</summary>
 /// <remarks>
 ///
@@ -50,8 +50,14 @@ public class SingleBullet : Attack
     {
         transform.position = AttackInfo.Weapon.transform.position;
 
+        var mousePosition = Tools.MousePosition2D();
+
+        Vector2 newPos = mousePosition - transform.position;
+        float rotZ = Mathf.Atan2(newPos.y, newPos.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, rotZ);
+
         DOTween.Init(true, true, LogBehaviour.Verbose).SetCapacity(200, 10);
-        moveTween = transform.DOMove(Tools.MousePosition2D(), speed).SetEase(Ease.Linear).SetSpeedBased().SetLoops(-1, LoopType.Incremental);
+        moveTween = transform.DOMove(mousePosition, speed).SetEase(Ease.Linear).SetSpeedBased().SetLoops(-1, LoopType.Incremental);
     }
 
     /******* INTERFACE IMPLEMENT *******/

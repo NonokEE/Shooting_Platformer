@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -5,6 +6,7 @@ using UnityEngine;
 using Unity.VisualScripting;
 
 using Stage;
+using System.Buffers;
 
 /// <summary> </summary>
 /// <remarks>
@@ -12,12 +14,15 @@ using Stage;
 /// </remarks>
 public class BasicGlock : Weapon
 {
-
     /******* FIELD *******/
     //~ Properties ~//
+    [Header("Basic Glock Properties")]
+    [SerializeField] private SingleBullet leftDownPrefab;
+    public int LeftDownDamage;
+    public int LeftDownPierce;
+    public int LeftDownSpeed;
 
     //~ Bindings ~//
-    [SerializeField] private Attack leftAttack;
 
     //~ For Funcs ~//
 
@@ -26,16 +31,29 @@ public class BasicGlock : Weapon
     //~ Debug ~//
 
     /******* EVENT FUNC *******/
-    
+
     /******* INTERFACE IMPLEMENT *******/
-    private void Awake()
+    protected override void SetStrategies()
     {
-        leftAttack = Resources.Load("Weapon/NormalBullet").AddComponent<Attack>();
+        //Set Info
+        Info.Weapon = this;
 
-        OnLeftDown += (Owner) => { LeftDown(); };
+        //Set LeftDown - SpawnAttack<SingleBullet>
+        OnLeftDown = gameObject.AddComponent<SpawnAttack>();
     }
-    
 
+    public override void Initiate()
+    {
+        var config = OnLeftDown as SpawnAttack;
+        config.Prefab = leftDownPrefab;
+        config.Info = Info;
+        config.SpawnCallback += (inst) => 
+        {
+            SingleBullet bullet = inst as SingleBullet;
+            bullet.SetProperties(new SingleBullet.Property(LeftDownDamage, LeftDownPierce, LeftDownSpeed));
+            bullet.Initiate();
+        };
+    }
     /******* METHOD *******/
     //~ Internal ~//
     /// <summary> Summary </summary>
@@ -44,12 +62,25 @@ public class BasicGlock : Weapon
     /// </remarks>
     /// <param name="paraName"> param description </param>
     /// <returns>  </returns>
-    private void LeftDown()
-    {
-        Instantiate(leftAttack, transform.position, transform.rotation);
-    }
+    //~ External ~//
 
     //~ Event Listener ~//
 
-    //~ External ~//
+}
+
+namespace Stage
+{
+    public class SpawnAttack : MonoBehaviour, ILeftDown 
+    {
+        public Attack Prefab;
+        public AttackInfo Info;
+        public Action<Attack> SpawnCallback = (inst) => {};
+
+        void ILeftDown.Invoke()
+        {
+            Attack inst = Instantiate(Prefab);
+            inst.AttackInfo = Info;
+            SpawnCallback(inst); 
+        }
+    }
 }

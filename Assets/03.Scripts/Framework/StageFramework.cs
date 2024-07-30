@@ -12,7 +12,7 @@ namespace Stage
     public interface IStageObject
     {
         public HitBox Hitbox{ get; }
-        public void Hit(Attack attack);
+        public void Hit(Attack attack, int damage);
     }
 
     /// <summary>
@@ -22,5 +22,16 @@ namespace Stage
     {
         public int CurrentHp { get; }
         public int MaxHp { get; }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public static class Tools
+    {
+        public static Vector3 MousePosition2D()
+        {
+            return Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z));
+        }
     }
 }

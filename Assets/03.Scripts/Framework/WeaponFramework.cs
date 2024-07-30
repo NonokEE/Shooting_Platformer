@@ -6,30 +6,43 @@ using UnityEngine;
 
 namespace Stage
 {
+    public struct AttackInfo
+    {
+        public Character Attacker;
+        public Weapon Weapon;
+    }
+
     public abstract class Weapon: MonoBehaviour
     {
-        public Character Owner;
-
-        public ILeftDown leftDown;
-        public ILeftHold leftHold;
-        public ILeftUp   leftUp;
-
-        public IRightDown rightDown;
-        public IRightHold rightHold;
-        public IRightUp   rightUp;
+        [Header("Weapon Properties")]
+        public AttackInfo Info;
+        //
 
         protected void Awake() 
         {
-            Initiate();
-            leftDown ??= new NoLeftDown();
-            leftHold ??= new NoLeftHold();
-            leftUp   ??= new NoLeftUp();
+            Info = new AttackInfo();
+            SetStrategies();
 
-            rightDown ??= new NoRightDown();
-            rightHold ??= new NoRightHold();
-            rightUp   ??= new NoRightUp();
+            OnLeftDown ??= new NoLeftDown();
+            OnLeftHold ??= new NoLeftHold();
+            OnLeftUp   ??= new NoLeftUp();
+
+            OnRightDown ??= new NoRightDown();
+            OnRightHold ??= new NoRightHold();
+            OnRightUp   ??= new NoRightUp();
         }
-        protected abstract void Initiate();
+
+        protected abstract void SetStrategies();
+        public abstract void Initiate();
+
+        public ILeftDown OnLeftDown;
+        public ILeftHold OnLeftHold;
+        public ILeftUp   OnLeftUp;
+
+        public IRightDown OnRightDown;
+        public IRightHold OnRightHold;
+        public IRightUp   OnRightUp;
+
     }
 
     public interface ILeftDown{ public void Invoke(); }

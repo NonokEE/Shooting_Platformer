@@ -25,7 +25,6 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rig;
     private Collider2D col;
 
-    private Weapon weapon;
 
     //~ For Funcs ~//
     private int moveDir;
@@ -37,7 +36,13 @@ public class PlayerController : MonoBehaviour
     //~ Debug ~//
     [Header("Debug")]
     [SerializeField] private bool isGrounded;
-    [SerializeField] private Vector2 velocity;
+
+    //TODO PlayerController의 Weapon의 Hierachy상 위치 다시 잡기
+    [Space]
+    [SerializeField] private Transform weaponSlot;
+    [SerializeField] private Weapon weaponPrefab;
+    private Weapon weapon;
+
 
     /******* EVENT FUNC *******/
     private void Awake() 
@@ -50,8 +55,9 @@ public class PlayerController : MonoBehaviour
         rig.bodyType     = playerControllerConfig.BodyType;
 
         //DEBUG
-        weapon = gameObject.AddComponent<BasicGlock>();
-        weapon.Owner = player;
+        weapon = Instantiate(weaponPrefab, weaponSlot);
+        weapon.Info.Attacker = player;
+        weapon.Initiate();
     }
 
     private void Update() 
@@ -87,13 +93,12 @@ public class PlayerController : MonoBehaviour
         if(Input.GetButtonDown("Jump")) jumpOrder = true;
 
         // Weapon
-        if(Input.GetMouseButtonDown((int)MouseButton.Left)) weapon.OnLeftDown(player);
-        if(Input.GetMouseButton    ((int)MouseButton.Left)) weapon.OnLeftHold(player);
-        if(Input.GetMouseButtonUp  ((int)MouseButton.Left)) weapon.OnLeftUp(player);
-
-        if(Input.GetMouseButtonDown((int)MouseButton.Right)) weapon.OnRightDown(player);
-        if(Input.GetMouseButton    ((int)MouseButton.Right)) weapon.OnRightHold(player);
-        if(Input.GetMouseButtonUp  ((int)MouseButton.Right)) weapon.OnRightUp(player);
+        if(Input.GetMouseButtonDown((int)MouseButton.Left))  weapon.OnLeftDown.Invoke();
+        if(Input.GetMouseButton    ((int)MouseButton.Left))  weapon.OnLeftHold.Invoke();
+        if(Input.GetMouseButtonUp  ((int)MouseButton.Left))  weapon.OnLeftUp  .Invoke();
+        if(Input.GetMouseButtonDown((int)MouseButton.Right)) weapon.OnRightDown.Invoke();
+        if(Input.GetMouseButton    ((int)MouseButton.Right)) weapon.OnRightHold.Invoke();
+        if(Input.GetMouseButtonUp  ((int)MouseButton.Right)) weapon.OnRightUp  .Invoke();
     }
 
     private void Move()
@@ -151,7 +156,7 @@ public class PlayerController : MonoBehaviour
 
     private void M_Debug()
     {
-        velocity = rig.velocity; 
+        
     }
 
     //~ Event Listener ~//

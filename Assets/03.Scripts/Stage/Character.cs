@@ -56,7 +56,7 @@ public class Character : MonoBehaviour, IKillable, IStageObject
     //~ External ~//
     public void Hit(Attack attack, int damage)
     {
-        Debug.Log("("+ name + ") got ("+ damage + ")damaged by (" + attack.AttackInfo.Attacker.name + ") with (" + attack.AttackInfo.Weapon + ")");
+        Debug.Log("("+ name + ") got ("+ damage + ")damage by (" + attack.AttackInfo.Attacker.name + ") with (" + attack.AttackInfo.Weapon.name + ")");
         //TODO Attack 피드백
         currentHp -= damage;
         if(currentHp <= 0) Die();

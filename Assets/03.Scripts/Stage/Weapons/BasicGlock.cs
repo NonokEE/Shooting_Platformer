@@ -95,18 +95,20 @@ namespace Stage
         {
             if (Cooltime == 0 || isReady)
             {
-                isReady = false;
                 Attack inst = Instantiate(Prefab);
                 inst.AttackInfo = Info;
                 SpawnCallback(inst);
-                StartCoroutine(Cooldown(Cooltime));
+                if(Cooltime != 0) 
+                {
+                    isReady = false;
+                    StartCoroutine(Cooldown(Cooltime));
+                }
             }
         }
 
         private IEnumerator Cooldown(float time)
         {
             yield return new WaitForSeconds(time);
-            Debug.Log("Ready");
             isReady = true;
         }
     }

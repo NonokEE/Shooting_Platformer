@@ -14,6 +14,7 @@ public class Character : MonoBehaviour, IKillable, IStageObject
     [SerializeField] private int currentHp;
     public int CurrentHp { get{ return currentHp; } }
 
+    [Tooltip("Invincible if maxHP < 0")]
     [SerializeField] private int maxHp;
     public int MaxHp { get {return maxHp; } }
 
@@ -58,8 +59,11 @@ public class Character : MonoBehaviour, IKillable, IStageObject
     {
         Debug.Log("("+ name + ") got ("+ damage + ")damage by (" + attack.AttackInfo.Attacker.name + ") with (" + attack.AttackInfo.Weapon.name + ")");
         //TODO Attack 피드백
-        currentHp -= damage;
-        if(currentHp <= 0) Die();
+        if(maxHp > 0)
+        {
+            currentHp -= damage;
+            if(currentHp <= 0) Die();
+        }
     }
 
     public void Die()

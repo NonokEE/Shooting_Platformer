@@ -12,7 +12,6 @@ namespace Stage
     public interface IStageObject
     {
         public HitBox Hitbox{ get; }
-        public void Hit(Attack attack, int damage);
     }
 
     /// <summary>
@@ -22,7 +21,33 @@ namespace Stage
     {
         public int CurrentHp { get; }
         public int MaxHp { get; }
+
+        public HitFeedback HitFeedback { get; }
+        public void Hit(Attack attack, int damage);
     }
+
+    public class HitFeedback
+    {
+        public  Character Sender{ get; private set; }
+        //TODO 피격무적 관련 옵션
+        //TODO 체력바 관련 옵션
+        //~ Invicator ~//
+        public IIndicator Indicator;
+        public bool showLog = true;
+
+        public HitFeedback(Character character)
+        {
+            Sender = character;
+        }
+        public void Invoke(Attack attack, int damage)
+        {
+            if(showLog) Debug.Log("("+ Sender.name + ") got ("+ damage + ")damage by (" + attack.AttackInfo.Attacker.name + ") with (" + attack.AttackInfo.Weapon.name + ")");
+            Indicator.Invoke();
+        }
+    }
+
+    public interface IIndicator { public void Invoke(); }
+    public class NoIndicator : IIndicator { public void Invoke(){} }
 
     /// <summary>
     /// 

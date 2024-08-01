@@ -9,13 +9,12 @@ namespace Stage
     /// <remarks>
     ///
     /// </remarks>
-    public class Player : Character
+    public class Enemy : Character
     {
         /******* FIELD *******/
         //~ Properties ~//
 
         //~ Bindings ~//
-        private PlayerController playerController;
 
         //~ For Funcs ~//
 

@@ -2,72 +2,67 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using Stage;
-
-[RequireComponent(typeof(HitBox))]
-/// <summary>체력을 가지고 피해를 받을 수 있는 개체. </summary>
-public class Character : MonoBehaviour, IKillable, IStageObject
+namespace Stage
 {
-    /******* FIELD *******/
-    //~ Killable ~//
-    [Header("Killable Attributes")]
-    [SerializeField] private int currentHp;
-    public int CurrentHp { get{ return currentHp; } }
-
-    [Tooltip("Invincible if maxHP < 0")]
-    [SerializeField] private int maxHp;
-    public int MaxHp { get {return maxHp; } }
-
-    //~ StageObject ~//
-    private HitBox hitBox;
-    public HitBox Hitbox { get {return hitBox; } }
-
-    //~ Bindings ~//
-
-    //~ For Funcs ~//
-
-    //~ Delegate & Event ~//
-
-    //~ Debug ~//
-
-    /******* EVENT FUNC *******/
-    protected void Awake() 
+    [RequireComponent(typeof(HitBox))]
+    /// <summary>체력을 가지고 피해를 받을 수 있는 개체. </summary>
+    public abstract class Character : MonoBehaviour, IKillable, IStageObject
     {
-        hitBox = GetComponent<HitBox>();
-    }
-
-    protected void Start() 
-    {
-        currentHp = maxHp;
-    }
-
-    /******* INTERFACE IMPLEMENT *******/
-
-    /******* METHOD *******/
-    //~ Internal ~//
-    /// <summary> Summary </summary>
-    /// <remarks>
-    /// 
-    /// </remarks>
-    /// <param name="paraName"> param description </param>
-    /// <returns>  </returns>
-
-    //~ Event Listener ~//
-
-    //~ External ~//
-    public void Hit(Attack attack, int damage)
-    {
-        Debug.Log("("+ name + ") got ("+ damage + ")damage by (" + attack.AttackInfo.Attacker.name + ") with (" + attack.AttackInfo.Weapon.name + ")");
-        //TODO Attack 피드백
-        if(maxHp > 0)
+        /******* Character : MonoBehaviour *******/
+        //~ Event Func ~//
+        protected virtual void Awake() 
         {
-            currentHp -= damage;
-            if(currentHp <= 0) Die();
-        }
-    }
+            hitBox = GetComponent<HitBox>();
 
-    public void Die()
-    {
-        Destroy(gameObject);
+            InitiateHitFeedback();
+        }
+
+        protected virtual void Start() 
+        {
+            currentHp = maxHp;
+        }
+
+        /******* Killable *******/
+        //~ Properties ~//
+        [Header("Killable Attributes")]
+        [SerializeField] private int currentHp;
+        public int CurrentHp { get{ return currentHp; } }
+
+        [Tooltip("Invincible if maxHP < 0")]
+        [SerializeField] private int maxHp;
+        public int MaxHp { get {return maxHp; } }
+
+        private HitFeedback hitFeedback;
+        public HitFeedback HitFeedback { get{ return hitFeedback; } }
+        
+        //~ Method ~//
+        protected void InitiateHitFeedback()
+        {
+            hitFeedback = new HitFeedback(this);
+            hitFeedback.Indicator ??= new NoIndicator();
+        }
+
+        public virtual void Hit(Attack attack, int damage)
+        {
+            //~ Feedback ~//
+            HitFeedback.Invoke(attack, damage);
+
+            //~ Die ~//
+            if(maxHp > 0)
+            {
+                currentHp -= damage;
+                if(currentHp <= 0) Die();
+            }
+        }
+        
+        protected virtual void Die()
+        {
+            Destroy(gameObject);
+        }
+
+        /******* StageObject *******/
+        //~ Properties ~//
+        private HitBox hitBox;
+        public HitBox Hitbox { get {return hitBox; } }
     }
 }

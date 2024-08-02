@@ -17,6 +17,11 @@ namespace Stage
         //~ Bindings ~//
         private PlayerController playerController;
 
+        protected override void InitiateHitFeedback()
+        {
+            throw new System.NotImplementedException();
+        }
+
         //~ For Funcs ~//
 
         //~ Delegate & Event ~//

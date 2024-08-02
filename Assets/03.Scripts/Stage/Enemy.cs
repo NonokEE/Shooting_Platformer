@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Stage
 {
@@ -17,6 +18,8 @@ namespace Stage
         //~ Bindings ~//
 
         //~ For Funcs ~//
+        [Header("Enemy Config")]
+        public Text hitIndicatorPrefab;
 
         //~ Delegate & Event ~//
 
@@ -25,6 +28,13 @@ namespace Stage
         /******* EVENT FUNC *******/
 
         /******* INTERFACE IMPLEMENT *******/
+        protected override void InitiateHitFeedback()
+        {
+            hitFeedback.Indicator = gameObject.AddComponent<BasicIndicator>();
+            hitFeedback.Indicator.Initiate(this);
+            (hitFeedback.Indicator as  BasicIndicator).textPrefab = hitIndicatorPrefab;
+            
+        }
 
         /******* METHOD *******/
         //~ Internal ~//

@@ -14,7 +14,7 @@ namespace Stage
         {
             hitBox = GetComponent<HitBox>();
 
-            InitiateHitFeedback();
+            InitiateKillable();
         }
 
         protected virtual void Start() 
@@ -32,15 +32,20 @@ namespace Stage
         [SerializeField] private int maxHp;
         public int MaxHp { get {return maxHp; } }
 
-        private HitFeedback hitFeedback;
+        //~ Bindings ~//
+        protected HitFeedback hitFeedback;
         public HitFeedback HitFeedback { get{ return hitFeedback; } }
         
         //~ Method ~//
-        protected void InitiateHitFeedback()
+        protected void InitiateKillable()
         {
             hitFeedback = new HitFeedback(this);
-            hitFeedback.Indicator ??= new NoIndicator();
+
+            InitiateHitFeedback();
+            hitFeedback.Indicator ??= new NoIndicator(this);
+            //TODO 히트 피드백 타입별 초기화
         }
+        protected abstract void InitiateHitFeedback();
 
         public virtual void Hit(Attack attack, int damage)
         {
@@ -54,7 +59,7 @@ namespace Stage
                 if(currentHp <= 0) Die();
             }
         }
-        
+
         protected virtual void Die()
         {
             Destroy(gameObject);

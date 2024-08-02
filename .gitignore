@@ -1,5 +1,4 @@
 ######### Custom gitignore
-Assets/99.Packages/
 Build/
 
 ######### Default gitignore #########

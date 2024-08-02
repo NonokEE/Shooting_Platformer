@@ -19,7 +19,7 @@ namespace Stage
 
         protected override void InitiateHitFeedback()
         {
-            throw new System.NotImplementedException();
+            Debug.Log("Not Implemented");
         }
 
         //~ For Funcs ~//

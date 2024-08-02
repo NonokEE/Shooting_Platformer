@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using DG.Tweening;
-using UnityEngine.Tilemaps;
+using TMPro;
 
 namespace Stage
 {
@@ -51,7 +51,7 @@ namespace Stage
         /******* FIELD *******/
         //~ Properties ~//
         [Header("Indicator Attributes")]
-        public Text textPrefab;
+        public TMP_Text textPrefab;
             [Space]
         
         [SerializeField] private Character sender;
@@ -66,12 +66,14 @@ namespace Stage
 
         public void Invoke(int damage)
         {
-            Text text = Instantiate(textPrefab, sender.transform);
+            TMP_Text text = Instantiate(textPrefab, sender.transform);
+
             text.name = sender.name + " HitIndicator";
             text.text = damage.ToString();
-            text.transform.position = transform.position + new Vector3(StartOffset.x, StartOffset.y);
+            text.rectTransform.anchoredPosition = StartOffset;
 
-            Tween moveTween = text.transform.DOMove(EndValue, Duration).SetEase(Ease.OutQuart);
+            Tween moveTween = text.transform.DOMove(text.transform.position + new Vector3(EndValue.x, EndValue.y), Duration).SetEase(Ease.OutQuart);
+            moveTween.Play();
             moveTween.OnComplete(()=>
             {
                 moveTween.Kill();

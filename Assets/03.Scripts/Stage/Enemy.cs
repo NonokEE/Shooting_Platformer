@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
+using TMPro;
+using Unity.Burst.Intrinsics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,8 +20,11 @@ namespace Stage
         //~ Bindings ~//
 
         //~ For Funcs ~//
-        [Header("Enemy Config")]
-        public Text hitIndicatorPrefab;
+        [Header("Hit Indicator Config")]
+        public TMP_Text hitIndicatorPrefab;
+        public Vector2 startOffset = Vector2.up;
+        public Vector2 endValue = Vector2.up;
+        public float Duration = 1;
 
         //~ Delegate & Event ~//
 
@@ -32,8 +37,12 @@ namespace Stage
         {
             hitFeedback.Indicator = gameObject.AddComponent<BasicIndicator>();
             hitFeedback.Indicator.Initiate(this);
-            (hitFeedback.Indicator as  BasicIndicator).textPrefab = hitIndicatorPrefab;
-            
+
+            var basicIndicator  = hitFeedback.Indicator as  BasicIndicator;
+            basicIndicator.textPrefab = hitIndicatorPrefab;
+            basicIndicator.StartOffset = startOffset;
+            basicIndicator.EndValue = endValue;
+            basicIndicator.Duration = Duration;
         }
 
         /******* METHOD *******/

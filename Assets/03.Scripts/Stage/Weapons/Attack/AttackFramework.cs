@@ -17,7 +17,7 @@ namespace Stage
         public AttackInfo AttackInfo;
 
         //
-        protected void Awake() 
+        protected virtual void Awake() 
         {
             SetStrategies();
             OnAttackEnter ??= new NoAttackEnter();

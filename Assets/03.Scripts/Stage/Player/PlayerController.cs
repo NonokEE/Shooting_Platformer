@@ -37,7 +37,6 @@ public class PlayerController : MonoBehaviour
     [Header("Debug")]
     [SerializeField] private bool isGrounded;
 
-    //TODO PlayerController의 Weapon의 Hierachy상 위치 다시 잡기
     [Space]
     [SerializeField] private Transform weaponSlot;
     [SerializeField] private Weapon weaponPrefab;

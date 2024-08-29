@@ -3,10 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
-using Unity.VisualScripting;
 
 using Stage;
-using System.Buffers;
 
 /// <summary> </summary>
 /// <remarks>
@@ -17,7 +15,7 @@ public class BasicGlock : Weapon
     /******* FIELD *******/
     //~ Properties ~//
     [Header("Basic Glock Properties")]
-    [SerializeField] private SingleBullet leftDownPrefab;
+    [SerializeField] private StraightBullet leftDownPrefab;
     public int LeftDownDamage;
     public int LeftDownPierce;
     public int LeftDownSpeed;
@@ -53,8 +51,8 @@ public class BasicGlock : Weapon
         config.Info = Info;
         config.SpawnCallback += (inst) => 
         {
-            SingleBullet bullet = inst as SingleBullet;
-            bullet.SetProperties(new SingleBullet.Property(LeftDownDamage, LeftDownPierce, LeftDownSpeed));
+            StraightBullet bullet = inst as StraightBullet;
+            bullet.SetProperties(new StraightBullet.Property(LeftDownDamage, LeftDownPierce, LeftDownSpeed));
             bullet.Initiate();
         };
     }

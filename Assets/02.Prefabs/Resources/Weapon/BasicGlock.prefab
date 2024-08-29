@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8931ed04148f9e4499a1dbf02a505d61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftDownPrefab: {fileID: 172843745300624816, guid: 2e41d786c2a62ef4c8e3fa06570f4ebf, type: 3}
+  leftDownPrefab: {fileID: 6151256217304578133, guid: 7185fc7e9f16b2d4bb1695f966f379d4, type: 3}
   LeftDownDamage: 10
   LeftDownPierce: 1
   LeftDownSpeed: 30

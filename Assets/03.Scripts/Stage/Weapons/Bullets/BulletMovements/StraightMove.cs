@@ -19,7 +19,7 @@ namespace Stage
         private void Start() 
         {
             transform.position = weaponPosition;
-            var mousePosition = Tools.MousePosition2D();
+            var mousePosition = StageTools.MousePosition2D();
 
             Vector2 newPos = mousePosition - transform.position;
             float rotZ = Mathf.Atan2(newPos.y, newPos.x) * Mathf.Rad2Deg;

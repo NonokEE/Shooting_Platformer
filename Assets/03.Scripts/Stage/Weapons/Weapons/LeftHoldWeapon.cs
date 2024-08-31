@@ -32,7 +32,7 @@ public class LeftHoldWeapon : Weapon
         config.Info = Info;
         config.SpawnCallback += (inst) => 
         {
-            Bullet bullet = inst as StraightBullet;
+            Bullet bullet = inst as Bullet;
 
             bullet.Damage = LeftHoldDamage;
             bullet.Pierce = LeftHoldPierce;

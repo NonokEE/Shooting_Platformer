@@ -1,15 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-
 using UnityEngine;
-
 using Stage;
 
-/// <summary> </summary>
-/// <remarks>
-///
-/// </remarks>
 public class BasicMachineGun : Weapon
 {
     /******* FIELD *******/
@@ -20,17 +11,6 @@ public class BasicMachineGun : Weapon
     public int LeftHoldPierce;
     public int LeftHoldSpeed;
     public float LeftHoldBps;
-
-
-    //~ Bindings ~//
-
-    //~ For Funcs ~//
-
-    //~ Delegate & Event ~//
-
-    //~ Debug ~//
-
-    /******* EVENT FUNC *******/
 
     /******* INTERFACE IMPLEMENT *******/
     protected override void SetStrategies()
@@ -52,8 +32,12 @@ public class BasicMachineGun : Weapon
         config.Info = Info;
         config.SpawnCallback += (inst) => 
         {
-            StraightBullet bullet = inst as StraightBullet;
-            bullet.SetProperties(new StraightBullet.Property(LeftHoldDamage, LeftHoldPierce, LeftHoldSpeed));
+            Bullet bullet = inst as StraightBullet;
+
+            bullet.Damage = LeftHoldDamage;
+            bullet.Pierce = LeftHoldPierce;
+            bullet.Speed = LeftHoldSpeed;
+            
             bullet.Initiate();
         };
     }

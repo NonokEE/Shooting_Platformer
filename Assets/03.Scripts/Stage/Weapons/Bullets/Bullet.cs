@@ -9,9 +9,15 @@ namespace Stage
     /// <summary> 투사체 타입 Attack </summary>
     public abstract class Bullet : Attack
     {
+        [Header("Attack Properties")]
         public Sprite Sprite;
         public IBulletMoveType BulletMoveType;
         private SpriteRenderer spriteRenderer;
+
+        [Header("Bullet Properties")]
+        public int Damage;
+        public int Pierce;
+        public int Speed;
 
         protected override void Awake() 
         {

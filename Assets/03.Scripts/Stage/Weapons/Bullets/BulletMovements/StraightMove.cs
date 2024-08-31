@@ -10,7 +10,7 @@ using DG.Tweening;
 /// </remarks>
 namespace Stage
 {
-    public class StraightBulletMove : MonoBehaviour, IBulletMoveType
+    public class StraightMove : MonoBehaviour, IBulletMoveType
     {
         public int BulletSpeed;
         public Vector3 weaponPosition;

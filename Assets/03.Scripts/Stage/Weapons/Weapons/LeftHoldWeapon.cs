@@ -1,11 +1,11 @@
 using UnityEngine;
 using Stage;
 
-public class BasicMachineGun : Weapon
+public class LeftHoldWeapon : Weapon
 {
     /******* FIELD *******/
     //~ Properties ~//
-    [Header("Basic Machine Gun Properties")]
+    [Header("Left Hold Properties")]
     [SerializeField] private StraightBullet leftHoldPrefab;
     public int LeftHoldDamage;
     public int LeftHoldPierce;
@@ -18,7 +18,7 @@ public class BasicMachineGun : Weapon
         //Set Info
         Info.Weapon = this;
 
-        //Set LeftHold - SpawnAttack<SingleBullet>
+        //Set LeftHold - SpawnAttack<>
         OnLeftHold = gameObject.AddComponent<SpawnAttack>();
     }
 
@@ -41,16 +41,4 @@ public class BasicMachineGun : Weapon
             bullet.Initiate();
         };
     }
-    /******* METHOD *******/
-    //~ Internal ~//
-    /// <summary> Summary </summary>
-    /// <remarks>
-    /// 
-    /// </remarks>
-    /// <param name="paraName"> param description </param>
-    /// <returns>  </returns>
-    //~ External ~//
-
-    //~ Event Listener ~//
-
 }

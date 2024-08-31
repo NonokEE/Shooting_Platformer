@@ -1,11 +1,11 @@
 using UnityEngine;
 using Stage;
 
-public class BasicGlock : Weapon
+public class LeftDownWeapon : Weapon
 {
     /******* FIELD *******/
     //~ Properties ~//
-    [Header("Basic Glock Properties")]
+    [Header("LeftDown Properties")]
     [SerializeField] private Bullet leftDownPrefab;
     public int LeftDownDamage;
     public int LeftDownPierce;

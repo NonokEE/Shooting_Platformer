@@ -1,13 +1,8 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
 
-/// <summary> </summary>
-/// <remarks>
-///
-/// </remarks>
 public class FiniteStateMachine<T_Sender, T_State> where T_Sender : MonoBehaviour where T_State : Enum
 {
     /******* FIELD *******/

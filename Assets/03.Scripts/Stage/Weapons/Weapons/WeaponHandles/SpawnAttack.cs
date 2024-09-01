@@ -18,10 +18,6 @@ namespace Stage
         void ILeftDown.Invoke(){BasicSpawnAttack();}
         void ILeftHold.Invoke(){BasicSpawnAttack();}
 
-        //~~ Logic ~~//
-        /// <summary>
-        /// 
-        /// </summary>
         private void BasicSpawnAttack()
         {
             if (Cooltime == 0 || isReady)

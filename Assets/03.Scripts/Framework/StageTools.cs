@@ -5,9 +5,6 @@ using UnityEngine;
 
 namespace Stage
 {
-    /// <summary>
-    /// 
-    /// </summary>
     public static class StageTools
     {
         public static Vector3 MousePosition2D()

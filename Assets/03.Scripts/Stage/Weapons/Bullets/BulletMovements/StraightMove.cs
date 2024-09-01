@@ -4,10 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-/// <summary> </summary>
-/// <remarks>
-///
-/// </remarks>
 namespace Stage
 {
     public class StraightMove : MonoBehaviour, IBulletMoveType

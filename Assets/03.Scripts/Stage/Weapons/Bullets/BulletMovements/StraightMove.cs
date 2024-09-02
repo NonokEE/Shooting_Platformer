@@ -8,13 +8,14 @@ namespace Stage
 {
     public class StraightMove : MonoBehaviour, IBulletMoveType
     {
+        public Vector2 StartPosition { get => startPosition; set => startPosition = value; }
+        private Vector2 startPosition;
         public int BulletSpeed;
-        public Vector3 weaponPosition;
 
         private Tween moveTween;
         private void Start() 
         {
-            transform.position = weaponPosition;
+            transform.position = StartPosition;
             var mousePosition = StageTools.MousePosition2D();
 
             Vector2 newPos = mousePosition - transform.position;

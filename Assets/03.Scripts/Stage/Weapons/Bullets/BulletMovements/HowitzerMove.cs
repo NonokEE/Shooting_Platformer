@@ -7,18 +7,20 @@ namespace Stage
 {
     public class HowitzerMove : MonoBehaviour, IBulletMoveType
     {
+        public Vector2 StartPosition { get => startPosition; set => startPosition = value; }
+        private Vector2 startPosition;
+
         public int Force;
-        public Vector3 weaponPosition;
 
         private Rigidbody2D rig;
 
         private void Start() 
         {
             Vector2 mousePosition = StageTools.MousePosition2D();
-            Vector2 targetVector = new(mousePosition.x - weaponPosition.x, mousePosition.y - weaponPosition.y);
+            Vector2 targetVector = new(mousePosition.x - StartPosition.x, mousePosition.y - StartPosition.y);
 
             //초기값 설정
-            transform.SetPositionAndRotation(weaponPosition, StageTools.GetQuatBy2D(targetVector));
+            transform.SetPositionAndRotation(StartPosition, StageTools.GetQuatBy2D(targetVector));
 
             //이동 설정
             rig = GetComponent<Rigidbody2D>();

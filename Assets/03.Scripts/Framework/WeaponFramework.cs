@@ -15,12 +15,12 @@ namespace Stage
     public abstract class Weapon: MonoBehaviour
     {
         [Header("Weapon Properties")]
-        public AttackInfo Info;
+        public AttackInfo AttackInfo;
         //
 
         protected void Awake() 
         {
-            Info = new AttackInfo();
+            AttackInfo = new AttackInfo();
             SetStrategies();
 
             OnLeftDown ??= new NoLeftDown();

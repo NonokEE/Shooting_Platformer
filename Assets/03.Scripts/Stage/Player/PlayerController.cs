@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool isGrounded;
 
     [Space]
-    [SerializeField] private Transform weaponSlot;
+    [SerializeField] private GameObject weaponSlot;
     [SerializeField] private Weapon weaponPrefab;
     private Weapon weapon;
 
@@ -54,8 +54,8 @@ public class PlayerController : MonoBehaviour
         rig.bodyType     = playerControllerConfig.BodyType;
 
         //DEBUG
-        weapon = Instantiate(weaponPrefab, weaponSlot);
-        weapon.Info.Attacker = player;
+        weapon = Instantiate(weaponPrefab, weaponSlot.transform);
+        weapon.AttackInfo.Attacker = player;
         weapon.Initiate();
     }
 

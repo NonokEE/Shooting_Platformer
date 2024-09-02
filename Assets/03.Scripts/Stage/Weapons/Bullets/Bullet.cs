@@ -16,10 +16,14 @@ namespace Stage
         [Header("Bullet Properties")]
         public int Damage;
         public int Speed;
+        public int PierceEnemy;
+        public int PierceGround;
         public float MaxDuration = 5.0f;
+
+        //
         protected Tween maxDurationTween;
         [HideInInspector] public BulletMoveType BulletMoveType;
-
+        //
         protected override void Awake() 
         {
             base.Awake();

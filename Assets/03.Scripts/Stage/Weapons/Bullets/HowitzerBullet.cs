@@ -5,10 +5,6 @@ using DG.Tweening;
 /// <summary> 적중시 1회만 피해를 주는 곡사투사체 공격 </summary>
 public class HowitzerBullet : Bullet
 {
-    [Header("StraightBullet Properties")]
-    public int PierceEnemy;
-    public int PierceGround;
-
     protected override void SetMoveType()
     {
         BulletMoveType = gameObject.AddComponent<HowitzerMove>();

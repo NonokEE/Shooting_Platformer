@@ -1844,7 +1844,7 @@ MonoBehaviour:
   playerControllerConfig: {fileID: 11400000, guid: b2e95916d1aa1d54a94f5c824c8b817a, type: 2}
   isGrounded: 0
   weaponSlot: {fileID: 2121482121}
-  weaponPrefab: {fileID: 276401518392432125, guid: 73d5ece003772fa49b9526a3a86e824b, type: 3}
+  weaponPrefab: {fileID: 4576469433784597552, guid: 306c39627b748d54aa4473f2f3e92de0, type: 3}
 --- !u!50 &2064013987
 Rigidbody2D:
   serializedVersion: 4

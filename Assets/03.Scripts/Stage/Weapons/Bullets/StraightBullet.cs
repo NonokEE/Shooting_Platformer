@@ -5,10 +5,6 @@ using DG.Tweening;
 /// <summary> 적중시 1회만 피해를 주는 직사투사체 공격 </summary>
 public class StraightBullet : Bullet
 {
-    [Header("StraightBullet Properties")]
-    public int PierceEnemy;
-    public int PierceGround;
-
     protected override void SetMoveType()
     {
         BulletMoveType = gameObject.AddComponent<StraightMove>();

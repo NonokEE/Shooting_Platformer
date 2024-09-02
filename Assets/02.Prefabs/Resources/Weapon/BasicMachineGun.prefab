@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4681841426185828589}
-  - component: {fileID: 5293891380940829856}
+  - component: {fileID: 4576469433784597552}
   m_Layer: 3
   m_Name: BasicMachineGun
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5293891380940829856
+--- !u!114 &4576469433784597552
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,10 +41,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5627021883041935240}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41e85e21b8eaf814e99139f793fb1f18, type: 3}
+  m_Script: {fileID: 11500000, guid: ce820ce0ad9298b4cac1c6120fa0ba23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftHoldPrefab: {fileID: 6151256217304578133, guid: 7185fc7e9f16b2d4bb1695f966f379d4, type: 3}
-  LeftHoldDamage: 5
-  LeftHoldSpeed: 20
-  LeftHoldBps: 20
+  BulletPrefab: {fileID: 6151256217304578133, guid: 7185fc7e9f16b2d4bb1695f966f379d4, type: 3}
+  BulletDamage: 5
+  BulletSpeed: 30
+  Bps: 15
+  PierceEnemy: 0
+  PierceGround: 0

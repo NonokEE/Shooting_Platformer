@@ -173,7 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 0
   Speed: 0
-  MaxDuration: 10
-  BulletMoveType: {fileID: 0}
   PierceEnemy: 0
   PierceGround: 0
+  MaxDuration: 5
+  BulletMoveType: {fileID: 0}

@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 169970110}
   - component: {fileID: 169970109}
   - component: {fileID: 169970108}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: PlayerCharactor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -305,7 +305,7 @@ GameObject:
   - component: {fileID: 350224245}
   - component: {fileID: 350224244}
   - component: {fileID: 350224243}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Terrain (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -463,7 +463,7 @@ GameObject:
   - component: {fileID: 417057509}
   - component: {fileID: 417057508}
   - component: {fileID: 417057507}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -861,7 +861,7 @@ GameObject:
   - component: {fileID: 1107049909}
   - component: {fileID: 1107049908}
   - component: {fileID: 1107049907}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Terrain (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1252,7 +1252,7 @@ GameObject:
   - component: {fileID: 1450952665}
   - component: {fileID: 1450952668}
   - component: {fileID: 1450952669}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1524,7 +1524,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1736011460}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1562,7 +1562,7 @@ GameObject:
   - component: {fileID: 1808829444}
   - component: {fileID: 1808829443}
   - component: {fileID: 1808829442}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Terrain (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1821,7 +1821,7 @@ GameObject:
   - component: {fileID: 2064013991}
   - component: {fileID: 2064013987}
   - component: {fileID: 2064013986}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: PlayerController
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1843,8 +1843,8 @@ MonoBehaviour:
   player: {fileID: 169970108}
   playerControllerConfig: {fileID: 11400000, guid: b2e95916d1aa1d54a94f5c824c8b817a, type: 2}
   isGrounded: 0
-  weaponSlot: {fileID: 2121482121}
-  weaponPrefab: {fileID: 4576469433784597552, guid: 306c39627b748d54aa4473f2f3e92de0, type: 3}
+  weaponSlot: {fileID: 2121482120}
+  weaponPrefab: {fileID: -1471964012060302949, guid: 9957016969cc86443beedceb651a15c4, type: 3}
 --- !u!50 &2064013987
 Rigidbody2D:
   serializedVersion: 4
@@ -2015,7 +2015,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2104595486}
   - component: {fileID: 2104595485}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2098,7 +2098,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2121482121}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: WeaponSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}

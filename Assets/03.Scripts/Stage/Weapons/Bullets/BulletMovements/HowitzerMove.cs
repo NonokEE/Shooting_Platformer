@@ -18,7 +18,7 @@ namespace Stage
             Vector2 targetVector = new(mousePosition.x - weaponPosition.x, mousePosition.y - weaponPosition.y);
 
             //초기값 설정
-            transform.SetPositionAndRotation(weaponPosition, StageTools.GetQuatZBy2D(targetVector));
+            transform.SetPositionAndRotation(weaponPosition, StageTools.GetQuatBy2D(targetVector));
 
             //이동 설정
             rig = GetComponent<Rigidbody2D>();
@@ -31,7 +31,7 @@ namespace Stage
 
         private void FixedUpdate() 
         {
-            transform.rotation = StageTools.GetQuatZBy2D(rig.velocity.y, rig.velocity.x);
+            transform.rotation = StageTools.GetQuatBy2D(rig.velocity.y, rig.velocity.x);
         }
     }
 }

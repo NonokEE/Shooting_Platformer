@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Security;
+
 using UnityEngine;
 
 /// <summary> 탄환연발하는 기본 기관총 </summary>

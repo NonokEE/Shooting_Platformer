@@ -35,11 +35,5 @@ namespace Stage
         {
             cooldownTween.Kill();
         }
-
-        private IEnumerator Cooldown(float time)
-        {
-            yield return new WaitForSeconds(time);
-            isReady = true;
-        }
     }
 }

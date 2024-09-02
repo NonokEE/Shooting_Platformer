@@ -31,9 +31,9 @@ namespace Stage
         public IAttackStay  OnAttackStay;
         public IAttackExit  OnAttackExit;
 
-        protected virtual void OnTriggerEnter2D(Collider2D other){ OnAttackEnter.Invoke(other); }
-        protected virtual void OnTriggerStay2D(Collider2D other) { OnAttackStay.Invoke(other); }
-        protected virtual void OnTriggerExit2D(Collider2D other) { OnAttackExit.Invoke(other); }
+        protected virtual void OnTriggerEnter2D(Collider2D other){ if(other.gameObject.CompareTag("Enemy")) OnAttackEnter.Invoke(other); }
+        protected virtual void OnTriggerStay2D(Collider2D other) { if(other.gameObject.CompareTag("Enemy")) OnAttackStay.Invoke(other); }
+        protected virtual void OnTriggerExit2D(Collider2D other) { if(other.gameObject.CompareTag("Enemy")) OnAttackExit.Invoke(other); }
     }
 
     public interface IAttackEnter{ public void Invoke(Collider2D other); }

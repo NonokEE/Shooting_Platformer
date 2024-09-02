@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -5,13 +6,25 @@ using UnityEngine;
 
 namespace Stage
 {
-    public interface IBulletMoveType
+    /// <summary>
+    /// 탄환의 이동패턴에 대한 정의. 적, 지형을 만났을 때 궤적이 바뀌거나 사라지거나 하는 등의 행동을 정의해야함.
+    /// </summary>
+    public abstract class BulletMoveType : MonoBehaviour
     {
         public Vector2 StartPosition{ get; set; }
+        protected Vector2 startPosition;
+
+        protected abstract void InitAction();
+        protected virtual void Awake(){ InitAction(); }
+
+        public Action OnEnterEnemy = () => {};
+        public Action OnStayEnemy = () => {};
+        public Action OnExitEnemy = () => {};
+
+        public Action OnEnterGround = () => {};
+        public Action OnStayGround = () => {};
+        public Action OnExitGround = () => {};
     }
 
-    public class NoMovement : IBulletMoveType
-    {
-        Vector2 IBulletMoveType.StartPosition { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-    }
+    public class NoMovement : BulletMoveType{ protected override void InitAction(){} }
 }

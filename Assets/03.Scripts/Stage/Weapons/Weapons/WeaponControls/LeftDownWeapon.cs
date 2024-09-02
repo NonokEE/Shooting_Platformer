@@ -8,7 +8,6 @@ public class LeftDownWeapon : Weapon
     [Header("LeftDown Properties")]
     [SerializeField] private Bullet leftDownPrefab;
     public int LeftDownDamage;
-    public int LeftDownPierce;
     public int LeftDownSpeed;
     public float LeftDownBps;
 
@@ -35,7 +34,6 @@ public class LeftDownWeapon : Weapon
             Bullet bullet = inst as Bullet;
 
             bullet.Damage = LeftDownDamage;
-            bullet.Pierce = LeftDownPierce;
             bullet.Speed = LeftDownSpeed;
             
             bullet.Initiate();

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -6,13 +7,16 @@ using DG.Tweening;
 
 namespace Stage
 {
-    public class StraightMove : MonoBehaviour, IBulletMoveType
+    public class StraightMove : BulletMoveType
     {
-        public Vector2 StartPosition { get => startPosition; set => startPosition = value; }
-        private Vector2 startPosition;
         public int BulletSpeed;
+        public int PierceGround;
+        public int PierceEnemy;
+        public Action OnDestroyCallback = () => {};
 
         private Tween moveTween;
+
+        //Movement
         private void Start() 
         {
             transform.position = StartPosition;
@@ -26,9 +30,30 @@ namespace Stage
             moveTween = transform.DOMove(mousePosition, BulletSpeed).SetEase(Ease.Linear).SetSpeedBased().SetLoops(-1, LoopType.Incremental);
         }
 
+        //
         private void OnDestroy() 
         {
-            moveTween.Kill();    
+            OnDestroyCallback();
+            moveTween.Kill();
+        }
+
+        protected override void InitAction()
+        {
+            OnEnterGround = EnterGround;
+            OnEnterEnemy = EnterEnemy;
+        }
+        private void EnterGround()
+        {
+            if(PierceGround == -1) return;
+            if(PierceGround == 0) Destroy(gameObject);
+            PierceGround -= 1;
+        }
+
+        private void EnterEnemy()
+        {
+            if(PierceEnemy == -1) return;
+            if(PierceEnemy == 0) Destroy(gameObject);
+            PierceEnemy -= 1;
         }
     }
 }

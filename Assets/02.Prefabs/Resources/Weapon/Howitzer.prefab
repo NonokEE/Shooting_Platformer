@@ -46,6 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftDownPrefab: {fileID: -426109446475218436, guid: 27c63e9e167230940b73bea5936cee58, type: 3}
   LeftDownDamage: 10
-  LeftDownPierce: 0
-  LeftDownSpeed: 15
-  LeftDownBps: 5
+  LeftDownSpeed: 20
+  LeftDownBps: 10

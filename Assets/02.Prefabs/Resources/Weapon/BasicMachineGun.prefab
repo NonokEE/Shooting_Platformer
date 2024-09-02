@@ -46,6 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftHoldPrefab: {fileID: 6151256217304578133, guid: 7185fc7e9f16b2d4bb1695f966f379d4, type: 3}
   LeftHoldDamage: 5
-  LeftHoldPierce: 1
   LeftHoldSpeed: 20
-  LeftHoldBps: 10
+  LeftHoldBps: 20

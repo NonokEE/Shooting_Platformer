@@ -8,7 +8,6 @@ public class LeftHoldWeapon : Weapon
     [Header("Left Hold Properties")]
     [SerializeField] private StraightBullet leftHoldPrefab;
     public int LeftHoldDamage;
-    public int LeftHoldPierce;
     public int LeftHoldSpeed;
     public float LeftHoldBps;
 
@@ -35,7 +34,6 @@ public class LeftHoldWeapon : Weapon
             Bullet bullet = inst as Bullet;
 
             bullet.Damage = LeftHoldDamage;
-            bullet.Pierce = LeftHoldPierce;
             bullet.Speed = LeftHoldSpeed;
             
             bullet.Initiate();

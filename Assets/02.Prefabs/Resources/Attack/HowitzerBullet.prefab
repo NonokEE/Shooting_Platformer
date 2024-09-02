@@ -157,7 +157,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!114 &-426109446475218436
 MonoBehaviour:
@@ -171,7 +171,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a928541a118aed5499831ea57772d347, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sprite: {fileID: 21300000, guid: 6d5ff2db7187acb4595feadaee26654a, type: 3}
   Damage: 0
-  Pierce: 0
   Speed: 0
+  MaxDuration: 5
+  BulletMoveType: {fileID: 0}
+  PierceEnemy: 0
+  PierceGround: 0

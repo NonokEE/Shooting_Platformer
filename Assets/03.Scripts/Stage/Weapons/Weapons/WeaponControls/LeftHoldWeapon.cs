@@ -27,8 +27,8 @@ public class LeftHoldWeapon : Weapon
         
         config.Cooltime = 1/LeftHoldBps;
 
-        config.Prefab = leftHoldPrefab;
-        config.Info = Info;
+        config.AttackPrefab = leftHoldPrefab;
+        config.AttackInfo = Info;
         config.SpawnCallback += (inst) => 
         {
             Bullet bullet = inst as Bullet;

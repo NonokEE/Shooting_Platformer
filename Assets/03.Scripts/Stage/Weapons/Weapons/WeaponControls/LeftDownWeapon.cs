@@ -27,8 +27,8 @@ public class LeftDownWeapon : Weapon
 
         config.Cooltime = 1/LeftDownBps;
 
-        config.Prefab = leftDownPrefab;
-        config.Info = Info;
+        config.AttackPrefab = leftDownPrefab;
+        config.AttackInfo = Info;
         config.SpawnCallback += (inst) => 
         {
             Bullet bullet = inst as Bullet;

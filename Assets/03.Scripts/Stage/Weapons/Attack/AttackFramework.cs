@@ -19,12 +19,12 @@ namespace Stage
         //
         protected virtual void Awake() 
         {
-            SetStrategies();
+            SetAttackStrategies();
             OnAttackEnter ??= new NoAttackEnter();
             OnAttackStay  ??= new NoAttackStay();
             OnAttackExit  ??= new NoAttackExit();
         }
-        protected abstract void SetStrategies();
+        protected abstract void SetAttackStrategies();
         public abstract void Initiate();
 
         public IAttackEnter OnAttackEnter;

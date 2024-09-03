@@ -15,7 +15,7 @@ public partial class GameManager : MonoBehaviour
     public InputManager InputManager { get { return inputManager; } }
 
     //~ Bindings ~//
-    [SerializeField] private Transform managerFolder;
+    [SerializeField] private GameObject managerFolder;
 
     //~ For Funcs ~//
 
@@ -60,7 +60,7 @@ public partial class GameManager : MonoBehaviour
     {
         if(inputManager == null)
         {
-            inputManager = Instantiate(new GameObject("InputManager"), managerFolder).AddComponent<InputManager>();
+            inputManager = Instantiate(new GameObject("InputManager"), managerFolder.transform).AddComponent<InputManager>();
         }
     }
 

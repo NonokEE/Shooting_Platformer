@@ -48,6 +48,9 @@ TagManager:
   - name: Terrain
     uniqueID: 2627597067
     locked: 0
+  - name: Bullet
+    uniqueID: 104161155
+    locked: 0
   - name: Character
     uniqueID: 834036253
     locked: 0

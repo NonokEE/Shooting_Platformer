@@ -11,14 +11,14 @@ namespace Stage
 {
     public class HitFeedback
     {
-        public  Character Sender{ get; private set; }
+        public  CharacterLegacy Sender{ get; private set; }
         //TODO 피격무적 관련 옵션
         //TODO 체력바 관련 옵션
         //~ Invicator ~//
         public IIndicator Indicator;
         public bool showLog = true;
 
-        public HitFeedback(Character character)
+        public HitFeedback(CharacterLegacy character)
         {
             Sender = character;
         }
@@ -33,18 +33,18 @@ namespace Stage
     // 피격시 데미지 표시 //
     public interface IIndicator 
     { 
-        public Character Sender{ get; } 
+        public CharacterLegacy Sender{ get; } 
         public void Invoke(int damage); 
-        public void Initiate(Character sender);
+        public void Initiate(CharacterLegacy sender);
     }
     public class NoIndicator : IIndicator 
     { 
-        public NoIndicator(Character sender){ this.sender = sender; }
-        private Character sender;
-        public Character Sender{ get{ return sender; } } 
+        public NoIndicator(CharacterLegacy sender){ this.sender = sender; }
+        private CharacterLegacy sender;
+        public CharacterLegacy Sender{ get{ return sender; } } 
 
         public void Invoke(int damage){} 
-        public void Initiate(Character sender){}
+        public void Initiate(CharacterLegacy sender){}
     }
     public class BasicIndicator : MonoBehaviour, IIndicator
     {
@@ -54,8 +54,8 @@ namespace Stage
         public TMP_Text textPrefab;
             [Space]
         
-        [SerializeField] private Character sender;
-        public Character Sender{ get{ return sender; } } 
+        [SerializeField] private CharacterLegacy sender;
+        public CharacterLegacy Sender{ get{ return sender; } } 
 
         [Header("Option")]
         //TODO 인티케이터 타입: 떠오르기, 흔들리기 등등
@@ -80,7 +80,7 @@ namespace Stage
                 Destroy(text.gameObject);
             });
         }
-        public void Initiate(Character sender)
+        public void Initiate(CharacterLegacy sender)
         {
             this.sender = sender;
 

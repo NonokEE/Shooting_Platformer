@@ -12,12 +12,12 @@ using Stage;
 /// <remarks>
 ///
 /// </remarks>
-public class PlayerController : MonoBehaviour
+public class PlayerControllerLegacy : MonoBehaviour
 {
     /******* FIELD *******/
     //~ Properties ~//
     [Header("Player Parameters")]
-    [SerializeField] private Player player;
+    [SerializeField] private PlayerLegacy player;
     [SerializeField] private PlayerControllerConfig playerControllerConfig;
 
         [Space]

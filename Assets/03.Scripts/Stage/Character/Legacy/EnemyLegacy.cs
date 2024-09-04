@@ -12,7 +12,7 @@ namespace Stage
     /// <remarks>
     ///
     /// </remarks>
-    public class Enemy : Character
+    public class EnemyLegacy : CharacterLegacy
     {
         /******* FIELD *******/
         //~ Properties ~//

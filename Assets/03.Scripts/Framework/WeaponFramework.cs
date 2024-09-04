@@ -8,7 +8,7 @@ namespace Stage
 {
     public struct AttackInfo
     {
-        public Character Attacker;
+        public CharacterLegacy Attacker;
         public Weapon Weapon;
     }
 

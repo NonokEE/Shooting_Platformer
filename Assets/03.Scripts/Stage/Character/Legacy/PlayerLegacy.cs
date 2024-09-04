@@ -9,13 +9,13 @@ namespace Stage
     /// <remarks>
     ///
     /// </remarks>
-    public class Player : Character
+    public class PlayerLegacy : CharacterLegacy
     {
         /******* FIELD *******/
         //~ Properties ~//
 
         //~ Bindings ~//
-        private PlayerController playerController;
+        private PlayerControllerLegacy playerController;
 
         protected override void InitiateHitFeedback()
         {

@@ -6,7 +6,7 @@ namespace Stage
 {
     [RequireComponent(typeof(HitBox))]
     /// <summary>체력을 가지고 피해를 받을 수 있는 개체. </summary>
-    public abstract class Character : MonoBehaviour, IKillable, IStageObject
+    public abstract class CharacterLegacy : MonoBehaviour, IKillable, IStageObject
     {
         /******* Character : MonoBehaviour *******/
         //~ Event Func ~//

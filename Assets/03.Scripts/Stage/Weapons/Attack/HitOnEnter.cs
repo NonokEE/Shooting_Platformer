@@ -11,7 +11,7 @@ namespace Stage
         public int Damage;
         public void Invoke(Collider2D other)
         {
-            other.gameObject.GetComponent<Character>().Hit(Attack, Damage);
+            other.gameObject.GetComponent<CharacterLegacy>().Hit(Attack, Damage);
         }
     }
 }

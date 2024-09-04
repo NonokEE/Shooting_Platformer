@@ -20,7 +20,7 @@ namespace Stage
         protected override void SetAttackStrategies() {}
         private void OnCollisionEnter2D(Collision2D other) 
         {
-            if(other.gameObject.CompareTag("Enemy")) other.gameObject.GetComponent<Character>().Hit(this, Damage);
+            if(other.gameObject.CompareTag("Enemy")) other.gameObject.GetComponent<CharacterLegacy>().Hit(this, Damage);
         }
 
         public override void Initiate()

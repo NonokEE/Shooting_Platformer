@@ -6,8 +6,8 @@ public partial class InputManager
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            GameManager.Inst.State = GameManager.GameState.GamePause;
-            Debug.Log(GameManager.Inst.State);
+            Singleton<GameManager>.Inst.State = GameManager.GameState.GamePause;
+            Debug.Log(Singleton<GameManager>.Inst.State);
         }
     }
 }

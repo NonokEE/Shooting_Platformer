@@ -8,31 +8,18 @@ public partial class GameManager : MonoBehaviour
     private InputManager inputManager = null;
     public InputManager InputManager { get { return inputManager; } }
 
-    public static GameManager Inst = null;
-
     //
 
     private void Awake() 
     {
-        SetSingleton();
+        Singleton<GameManager>.Inst = this;
         InitiateStateMachine();
         InitiateManagers();
     }
 
     //
 
-    private void SetSingleton()
-    {
-        if(Inst == null)
-        {
-            Inst = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+    
     private void InitiateManagers()
     {
         if(inputManager == null)

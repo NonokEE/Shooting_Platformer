@@ -11,6 +11,8 @@ public partial class InputManager : MonoBehaviour
 
     private void Awake()
     {
+        Singleton<InputManager>.Inst = this;
+
         OnUpdate = new Dictionary<GameManager.GameState, Action>();
         foreach(GameManager.GameState gameState in Enum.GetValues(typeof(GameManager.GameState)))
         {
@@ -22,6 +24,6 @@ public partial class InputManager : MonoBehaviour
 
     private void Update() 
     {
-        OnUpdate[GameManager.Inst.State].Invoke();
+        OnUpdate[Singleton<GameManager>.Inst.State].Invoke();
     }
 }

@@ -26,8 +26,8 @@ public class IngamePanel : MonoBehaviour
     {
         content.gameObject.SetActive(false);        
 
-        GameManager.Inst.StateMachine.AddEvent(GameManager.GameState.Pause, FiniteStateMachine<GameManager, GameManager.GameState>.EventType.Enter, EnterPause);
-        GameManager.Inst.StateMachine.AddEvent(GameManager.GameState.Pause, FiniteStateMachine<GameManager, GameManager.GameState>.EventType.Exit, ExitPause);
+        GameManager.Inst.StateMachine.AddEvent(GameManager.GameState.GamePause, FiniteStateMachine<GameManager, GameManager.GameState>.EventType.Enter, EnterPause);
+        GameManager.Inst.StateMachine.AddEvent(GameManager.GameState.GamePause, FiniteStateMachine<GameManager, GameManager.GameState>.EventType.Exit, ExitPause);
     }
 
     /******* INTERFACE IMPLEMENT *******/

@@ -4,54 +4,24 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-/// <summary> Input에 따라 GameManager의 이벤트 발동 </summary>
-/// <remarks>
-///
-/// </remarks>
-public class InputManager : MonoBehaviour
+/// <summary> GameManager의 State와 Input에 대응하여, GameManager의 State를 별경 </summary>
+public partial class InputManager : MonoBehaviour
 {
-    /******* FIELD *******/
-    //~ Properties ~//
+    private Dictionary<GameManager.GameState, Action> OnUpdate;
 
-    //~ Bindings ~//
-
-    //~ For Funcs ~//
-
-    //~ Delegate & Event ~//
-
-    //~ Debug ~//
-
-    /******* EVENT FUNC *******/
-    private void Update() 
+    private void Awake()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        OnUpdate = new Dictionary<GameManager.GameState, Action>();
+        foreach(GameManager.GameState gameState in Enum.GetValues(typeof(GameManager.GameState)))
         {
-            if (GameManager.Inst.State == GameManager.GameState.Playing) 
-            {
-                GameManager.Inst.State = GameManager.GameState.Pause;
-            }
-            else if (GameManager.Inst.State == GameManager.GameState.Pause)
-            {
-                GameManager.Inst.State = GameManager.GameState.Playing;
-            }
-            Debug.Log(GameManager.Inst.State);
+            OnUpdate[gameState] = () => {};
         }
+        OnUpdate[GameManager.GameState.GamePlaying] = OnUpdate_GamePlaying;
+        OnUpdate[GameManager.GameState.GamePause] = OnUpdate_GamePause;
     }
 
-    /******* INTERFACE IMPLEMENT *******/
-
-    /******* METHOD *******/
-    //~ Internal ~//
-    /// <summary> Summary </summary>
-    /// <remarks>
-    /// 
-    /// </remarks>
-    /// <param name="paraName"> param description </param>
-    /// <returns>  </returns>
-    /// 
-    
-
-    //~ Event Listener ~//
-
-    //~ External ~//
+    private void Update() 
+    {
+        OnUpdate[GameManager.Inst.State].Invoke();
+    }
 }

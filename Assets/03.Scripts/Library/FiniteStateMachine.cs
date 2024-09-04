@@ -78,6 +78,7 @@ public class FiniteStateMachine<T_Sender, T_State> where T_Sender : MonoBehaviou
         transitions[depart][dest] -= action;
     }
 
+    //TODO transition이 길어질 수 있는데, transition이 완전히 끝나야 다음 state의 OnEnter를 Invoke하도록 수정.
     public void SetStatus(T_State next)
     {
         if(string.Equals(next.ToString(), CurrentState.Name))

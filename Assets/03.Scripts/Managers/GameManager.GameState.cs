@@ -13,17 +13,17 @@ public partial class GameManager
     public enum GameState { Loading, Playing, Pause }
     public GameState State
     {
-        get { return Enum.Parse<GameState>(fsm.CurrentState.Name); }
-        set { fsm.SetStatus(value); }
+        get { return Enum.Parse<GameState>(StateMachine.CurrentState.Name); }
+        set { StateMachine.SetStatus(value); }
     }
 
-    public FiniteStateMachine<GameManager, GameState> fsm;
+    public FiniteStateMachine<GameManager, GameState> StateMachine;
     private void InitiateStateMachine()
     {
-        fsm = new FiniteStateMachine<GameManager, GameState>(this, GameState.Loading);
+        StateMachine = new FiniteStateMachine<GameManager, GameState>(this, GameState.Loading);
 
-        fsm.AddEvent(GameState.Pause, FiniteStateMachine<GameManager, GameState>.EventType.Enter, () => { Time.timeScale = 0; });
-        fsm.AddEvent(GameState.Pause, FiniteStateMachine<GameManager, GameState>.EventType.Exit, () => { Time.timeScale = 1.0f; });
-        fsm.SetStatus(GameState.Playing);
+        StateMachine.AddEvent(GameState.Pause, FiniteStateMachine<GameManager, GameState>.EventType.Enter, () => { Time.timeScale = 0; });
+        StateMachine.AddEvent(GameState.Pause, FiniteStateMachine<GameManager, GameState>.EventType.Exit, () => { Time.timeScale = 1.0f; });
+        StateMachine.SetStatus(GameState.Playing);
     }
 }

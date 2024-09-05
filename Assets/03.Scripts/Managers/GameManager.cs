@@ -5,8 +5,8 @@ using UnityEngine;
 
 public partial class GameManager : MonoBehaviour
 {
-    private InputManager inputManager = null;
-    public InputManager InputManager { get { return inputManager; } }
+    private InputStateManager inputStateManager = null;
+    public InputStateManager InputStateManager { get { return inputStateManager; } }
 
     //
 
@@ -22,10 +22,10 @@ public partial class GameManager : MonoBehaviour
     
     private void InitiateManagers()
     {
-        if(inputManager == null)
+        if(inputStateManager == null)
         {
-            inputManager = Instantiate(new GameObject("InputManager")).AddComponent<InputManager>();
-            inputManager.gameObject.name = "InputManager";
+            inputStateManager = Instantiate(new GameObject("InputStateManager")).AddComponent<InputStateManager>();
+            inputStateManager.gameObject.name = "InputStateManager";
         }
     }
 }

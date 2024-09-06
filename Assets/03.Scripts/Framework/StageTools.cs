@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Stage
 {
@@ -9,7 +11,8 @@ namespace Stage
     {
         public static Vector3 MousePosition2D()
         {
-            return Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z));
+            Vector2 mousePosition = Mouse.current.position.ReadValue();
+            return Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, -Camera.main.transform.position.z));
         }
 
         public static quaternion GetQuatBy2D(Vector2 vector2)

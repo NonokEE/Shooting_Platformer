@@ -15,6 +15,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "8dbb56ef-814a-4775-b9b0-270b935b6e33",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "MainFire",
                     "type": "Button",
                     "id": "98ed150a-d7e9-4508-b6a5-29c49614d82f",
@@ -31,31 +40,13 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Jump",
-                    "type": "Button",
-                    "id": "8dbb56ef-814a-4775-b9b0-270b935b6e33",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "MultiTap",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Test",
-                    "type": "Button",
-                    "id": "f70ff7f0-a42b-4e09-a781-f4bbb9ddc600",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "WASD 2DVector",
                     "id": "4c5629c2-2579-441b-b825-d05d7b82e69e",
-                    "path": "2DVector",
+                    "path": "2DVector(mode=1)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -110,7 +101,7 @@
                 {
                     "name": "ArrowKey 2DVector",
                     "id": "d637defc-9782-4fdc-bf17-a8e3710021f7",
-                    "path": "2DVector",
+                    "path": "2DVector(mode=1)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -192,17 +183,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "c8f3f02a-751b-4e3b-b4bf-f3daa1c84e55",
-                    "path": "<Keyboard>/t",
-                    "interactions": "MultiTap",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Test",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+using Stage;
+using DG.Tweening;
+
 /// <summary> </summary>
 /// <remarks>
 ///
@@ -13,29 +16,42 @@ public class PlayerActionReceiver : MonoBehaviour
     /******* FIELD *******/
     //~ Properties ~//
     [SerializeField] private PlayerInput playerInput;
-    [SerializeField] private InputActionMap actionMap;
-    [SerializeField] private InputAction moveAction;
-    [SerializeField] private InputAction mainFireAction;
-    [SerializeField] private InputAction subFireAction;
-    [SerializeField] private InputAction jumpAction;
-    [SerializeField] private InputAction testAction;
+    private InputActionMap actionMap;
+
+    private InputAction moveAction;
+    private InputAction jumpAction;
+
+    private InputAction mainFireAction;
+    private InputAction subFireAction;
 
     private void Awake() 
     {
         playerInput = playerInput != null ? playerInput : GetComponent<PlayerInput>();
         actionMap = playerInput.actions.FindActionMap("Player");
+
         moveAction = actionMap.FindAction("Move");
+        jumpAction = actionMap.FindAction("Jump");
+
         mainFireAction = actionMap.FindAction("MainFire");
         subFireAction = actionMap.FindAction("SubFire");
-        jumpAction = actionMap.FindAction("Jump");
-        testAction = actionMap.FindAction("Test");
 
-        moveAction.started += cnt => { Debug.Log("move started"); };
-        moveAction.performed += cnt => { Debug.Log("move performed"); };
-        moveAction.canceled += cnt => { Debug.Log("move canceled"); };
+        mainFireAction.started += param => { Debug.Log("started" );};
+        mainFireAction.performed += param => { Debug.Log("performed");};
+        mainFireAction.canceled += param => { Debug.Log("canceled");};
 
-        testAction.started += cnt => { Debug.Log("test started"); };
-        testAction.performed += cnt => { Debug.Log("test performed"); };
-        testAction.canceled += cnt => { Debug.Log("test canceled"); };
+        moveAction.performed += param => Debug.Log(param.ReadValue<Vector2>());
+    }
+
+    private void Update()
+    {
+        if (Mouse.current != null)
+        {
+            Vector2 mousePosition = Mouse.current.position.ReadValue();
+            Debug.Log("Mouse Position: " + mousePosition);
+        }
+        else
+        {
+            Debug.LogWarning("Mouse input is not available.");
+        }
     }
 }

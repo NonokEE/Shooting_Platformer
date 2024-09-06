@@ -1743,18 +1743,18 @@ MonoBehaviour:
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 09c5ba41-9267-4a12-99c1-ad5d8520bcb0
-    m_ActionName: Player/Aim[/Mouse/position]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: 98ed150a-d7e9-4508-b6a5-29c49614d82f
     m_ActionName: Player/Fire1[/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: ffd6cabe-6136-4f8e-bafc-44793a205fb8
     m_ActionName: Player/Fire2[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8dbb56ef-814a-4775-b9b0-270b935b6e33
+    m_ActionName: Player/Jump[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: PC
+  m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -1823,57 +1823,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInput: {fileID: 1247140538}
-  actionMap:
-    m_Name: Action Map
-    m_Id: 3788939c-652d-43b1-ae87-4696ddb04832
-    m_Asset: {fileID: 0}
-    m_Actions: []
-    m_Bindings: []
-  moveAction:
-    m_Name: Move
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 9b3524f6-fa9b-42c2-8572-5e61c3e45615
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  mainFireAction:
-    m_Name: Main Fire
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 0fc8f7a9-2e3c-469e-9ea9-8e77e5efb39f
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  subFireAction:
-    m_Name: Sub Fire
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 4a5ac732-b19d-4748-8650-8fd4fb92483e
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  jumpAction:
-    m_Name: Jump
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 89c53241-8b01-4b23-824e-fa172677f5cb
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  testAction:
-    m_Name: Test
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: dec43b95-6a4f-4ce7-b5e0-ada243cef037
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
 --- !u!1 &1565344065
 GameObject:
   m_ObjectHideFlags: 0

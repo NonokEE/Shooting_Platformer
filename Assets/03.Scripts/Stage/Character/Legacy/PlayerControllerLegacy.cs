@@ -87,18 +87,17 @@ public class PlayerControllerLegacy : MonoBehaviour
     /// 
     private void GetInput()
     {
-        
         // Move
-        moveDir = (int)Input.GetAxisRaw("Horizontal");
-        if(Input.GetButtonDown("Jump")) jumpOrder = true;
+        // moveDir = (int)Input.GetAxisRaw("Horizontal");
+        // if(Input.GetButtonDown("Jump")) jumpOrder = true;
 
-        // Weapon
-        if(Input.GetMouseButtonDown((int)MouseButton.Left))  weapon.OnLeftDown.Invoke();
-        if(Input.GetMouseButton    ((int)MouseButton.Left))  weapon.OnLeftHold.Invoke();
-        if(Input.GetMouseButtonUp  ((int)MouseButton.Left))  weapon.OnLeftUp  .Invoke();
-        if(Input.GetMouseButtonDown((int)MouseButton.Right)) weapon.OnRightDown.Invoke();
-        if(Input.GetMouseButton    ((int)MouseButton.Right)) weapon.OnRightHold.Invoke();
-        if(Input.GetMouseButtonUp  ((int)MouseButton.Right)) weapon.OnRightUp  .Invoke();
+        // // Weapon
+        // if(Input.GetMouseButtonDown((int)MouseButton.Left))  weapon.OnLeftDown.Invoke();
+        // if(Input.GetMouseButton    ((int)MouseButton.Left))  weapon.OnLeftHold.Invoke();
+        // if(Input.GetMouseButtonUp  ((int)MouseButton.Left))  weapon.OnLeftUp  .Invoke();
+        // if(Input.GetMouseButtonDown((int)MouseButton.Right)) weapon.OnRightDown.Invoke();
+        // if(Input.GetMouseButton    ((int)MouseButton.Right)) weapon.OnRightHold.Invoke();
+        // if(Input.GetMouseButtonUp  ((int)MouseButton.Right)) weapon.OnRightUp  .Invoke();
     }
 
     private void Move()

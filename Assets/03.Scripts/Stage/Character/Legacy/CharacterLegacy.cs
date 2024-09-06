@@ -22,6 +22,11 @@ namespace Stage
             currentHp = maxHp;
         }
 
+        private void Update() 
+        {
+            StageTools.MousePosition2D();
+        }
+
         /******* Killable *******/
         //~ Properties ~//
         [Header("Killable Attributes")]

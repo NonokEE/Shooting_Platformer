@@ -87,6 +87,7 @@ public class PlayerControllerLegacy : MonoBehaviour
     /// 
     private void GetInput()
     {
+        
         // Move
         moveDir = (int)Input.GetAxisRaw("Horizontal");
         if(Input.GetButtonDown("Jump")) jumpOrder = true;

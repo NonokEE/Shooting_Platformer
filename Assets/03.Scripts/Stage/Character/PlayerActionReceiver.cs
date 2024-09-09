@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 using Stage;
 using DG.Tweening;
+using Unity.Burst.Intrinsics;
 
 /// <summary> </summary>
 /// <remarks>
@@ -16,13 +17,15 @@ public class PlayerActionReceiver : MonoBehaviour
     /******* FIELD *******/
     //~ Properties ~//
     [SerializeField] private PlayerInput playerInput;
-    private InputActionMap actionMap;
+    [SerializeField] private InputActionMap actionMap;
 
-    private InputAction moveAction;
-    private InputAction jumpAction;
+    [SerializeField] private InputAction moveAction;
+    [SerializeField] private InputAction jumpAction;
 
-    private InputAction mainFireAction;
-    private InputAction subFireAction;
+    [SerializeField] private InputAction mousePosition;
+    [SerializeField] private InputAction mainFireAction;
+    [SerializeField] private InputAction subFireAction;
+
 
     private void Awake() 
     {
@@ -35,23 +38,16 @@ public class PlayerActionReceiver : MonoBehaviour
         mainFireAction = actionMap.FindAction("MainFire");
         subFireAction = actionMap.FindAction("SubFire");
 
-        mainFireAction.started += param => { Debug.Log("started" );};
-        mainFireAction.performed += param => { Debug.Log("performed");};
-        mainFireAction.canceled += param => { Debug.Log("canceled");};
+        mainFireAction.performed += param => Debug.Log("MainFire Performed");
 
         moveAction.performed += param => Debug.Log(param.ReadValue<Vector2>());
+        jumpAction.performed += param => Debug.Log("Jump Performed");
+
+        if(! Mouse.current.enabled) InputSystem.EnableDevice(Mouse.current);
     }
 
     private void Update()
     {
-        if (Mouse.current != null)
-        {
-            Vector2 mousePosition = Mouse.current.position.ReadValue();
-            Debug.Log("Mouse Position: " + mousePosition);
-        }
-        else
-        {
-            Debug.LogWarning("Mouse input is not available.");
-        }
+
     }
 }

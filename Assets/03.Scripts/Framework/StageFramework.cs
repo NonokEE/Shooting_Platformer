@@ -22,6 +22,7 @@ namespace Stage
         public int CurrentHp { get; }
         public int MaxHp { get; }
 
+        //TODO InputSystem에 맞춰서 리워크한거 기준으로 HitFeedback 부분 리워크 필요. 일단은 그냥 구현.
         public HitFeedback HitFeedback { get; }
         public void Hit(Attack attack, int damage);
     }

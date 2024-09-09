@@ -23,7 +23,6 @@ namespace Stage
             hoe_config.Damage = Damage;
 
             StraightMove sbm_config = BulletMoveType as StraightMove;
-            sbm_config.StartPosition = AttackInfo.Weapon.transform.position;
             sbm_config.BulletSpeed = Speed;
             sbm_config.PierceGround = PierceGround;
             sbm_config.PierceEnemy = PierceEnemy;

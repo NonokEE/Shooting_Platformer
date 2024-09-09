@@ -21,6 +21,14 @@ namespace Stage
         public float MaxDuration = 5.0f;
 
         //
+
+        public Vector2 StartPosition{ get => startPosition; set => startPosition = value; }
+        protected Vector2 startPosition;
+
+        public Vector2 TargetPosition{ get => targetPosition; set => targetPosition = value; }
+        protected Vector2 targetPosition;
+
+        //
         protected Tween maxDurationTween;
         [HideInInspector] public BulletMoveType BulletMoveType;
         //
@@ -33,6 +41,10 @@ namespace Stage
             maxDurationTween = DOTween.To(() => MaxDuration, x => MaxDuration = x, 0, MaxDuration).OnComplete(() => Destroy(gameObject));
         }
 
+        protected abstract void SetMoveType();
+        public void SetSprite(Sprite sprite) => spriteRenderer.sprite = sprite;
+
+        //TODO 피아 식별 리워크 필요
         protected override void OnTriggerEnter2D(Collider2D other)
         { 
             if(other.gameObject.CompareTag("Enemy")) 
@@ -61,7 +73,5 @@ namespace Stage
             else if (other.gameObject.layer == LayerMask.NameToLayer("Ground")) BulletMoveType.OnExitGround();
         }
 
-        protected abstract void SetMoveType();
-        public void SetSprite(Sprite sprite) => spriteRenderer.sprite = sprite;
     }
 }

@@ -19,15 +19,14 @@ namespace Stage
         //Movement
         private void Start() 
         {
-            transform.position = StartPosition;
-            var mousePosition = StageTools.MousePosition2D();
+            transform.position = bullet.StartPosition;
 
-            Vector2 newPos = mousePosition - transform.position;
+            Vector2 newPos = bullet.TargetPosition - bullet.StartPosition;
             float rotZ = Mathf.Atan2(newPos.y, newPos.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0, 0, rotZ);
 
             DOTween.Init(true, true, LogBehaviour.Verbose).SetCapacity(200, 10);
-            moveTween = transform.DOMove(mousePosition, BulletSpeed).SetEase(Ease.Linear).SetSpeedBased().SetLoops(-1, LoopType.Incremental);
+            moveTween = transform.DOMove(bullet.TargetPosition, BulletSpeed).SetEase(Ease.Linear).SetSpeedBased().SetLoops(-1, LoopType.Incremental);
         }
 
         //

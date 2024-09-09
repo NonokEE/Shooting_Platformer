@@ -25,12 +25,11 @@ namespace Stage
         //Movement
         private void Start() 
         {
-            Vector2 mousePosition = StageTools.MousePosition2D();
-            Vector2 targetVector = new(mousePosition.x - StartPosition.x, mousePosition.y - StartPosition.y);
+            Vector2 targetVector = new(bullet.TargetPosition.x - bullet.StartPosition.x, bullet.TargetPosition.y - bullet.StartPosition.y);
 
             //초기값 설정
             //TODO ThrowerMove : 무작위 회전한 상태에서 시작
-            transform.SetPositionAndRotation(StartPosition, StageTools.GetQuatBy2D(targetVector));
+            transform.SetPositionAndRotation(bullet.StartPosition, StageTools.GetQuatBy2D(targetVector));
 
             //이동 설정
             rig = GetComponent<Rigidbody2D>();

@@ -26,7 +26,6 @@ namespace Stage
         public override void Initiate()
         {
             ThrowerMove thm_config = BulletMoveType as ThrowerMove;
-            thm_config.StartPosition = AttackInfo.Weapon.transform.position;
             thm_config.Force = Speed;
             thm_config.EnemyBounce = PierceEnemy;
             thm_config.TotalBounce = PierceGround;

@@ -46,6 +46,9 @@ namespace Stage
                 bullet.Damage = BulletDamage;
                 bullet.Speed = BulletSpeed;
 
+                bullet.StartPosition = AttackInfo.Attacker.transform.position;
+                bullet.TargetPosition = StageTools.MousePosition2D();
+
                 bullet.PierceEnemy = PierceEnemy;
                 bullet.PierceGround = PierceGround;
                 

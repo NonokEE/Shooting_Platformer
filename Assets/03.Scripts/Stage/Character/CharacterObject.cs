@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace Stage
 {
-    [RequireComponent(typeof(HitBox))]
     public abstract class CharacterObject : MonoBehaviour, IKillable, IStageObject
     {
         [Header("Character Config")]

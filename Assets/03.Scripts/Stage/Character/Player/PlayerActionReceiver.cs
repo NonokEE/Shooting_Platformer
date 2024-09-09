@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 namespace Stage
 {
+    [RequireComponent(typeof(PlayerInput))]
     public class PlayerActionReceiver : MonoBehaviour
     {
         public PlayerInput PlayerInput { get => playerInput; set => playerInput = value; }
@@ -34,20 +35,6 @@ namespace Stage
             if (!Mouse.current.enabled) InputSystem.EnableDevice(Mouse.current);
 
             playerInput = playerInput != null ? playerInput : GetComponent<PlayerInput>();
-            InitiateActions();
-            Subscribe();
-        }
-
-        public void ChangePlayerInput(PlayerInput playerInput)
-        {
-            Describe();
-            InitiateActions();
-            Subscribe();
-            this.playerInput = playerInput;
-        }
-
-        private void InitiateActions()
-        {
             actionMap = playerInput.actions.FindActionMap("Player");
 
             moveAction = actionMap.FindAction("Move");
@@ -60,16 +47,46 @@ namespace Stage
             skillTwoAction = actionMap.FindAction("SkillTwo");
         }
 
+        private void Update() 
+        {
+
+        }
+
+        //
+
+        public void ApplyPlayerMovement(PlayerMovement playerMovement)
+        {
+            if(playerMovement != null)
+            {
+                Describe();
+                Destroy(this.playerMovement);
+            }
+            this.playerMovement = playerMovement;
+            Subscribe();
+        }
+
         private void Subscribe()
         {
             moveAction.performed += OnMove;
+            moveAction.canceled += OnMove;
             jumpAction.performed += OnJump;
 
-            mainFireAction.performed += OnMainFire;
-            subFireAction.performed += OnSubFire;
+            //TODO Weapon, Skill을 InputSystem 기반으로 리팩토링 할 때 수정 필요. (아마 그냥 삭제하면 될 듯. WeaponActionReceiver에서 입력 처리 할테니까.)
+            mainFireAction.started += OnMainDown;
+            mainFireAction.performed += OnMainHold;
+            mainFireAction.canceled += OnMainUp;
 
-            skillOneAction.performed += OnSkillOne;
-            skillTwoAction.performed += OnSkillTwo;
+            subFireAction.started += OnSubDown;
+            subFireAction.performed += OnSubHold;
+            subFireAction.canceled += OnSubUp;
+
+            skillOneAction.started += OnSkillOneDown;
+            skillOneAction.performed += OnSkillOneHold;
+            skillOneAction.canceled += OnSkillOneUp;
+
+            skillTwoAction.started += OnSkillTwoDown;
+            skillTwoAction.performed += OnSkillTwoHold;
+            skillTwoAction.canceled += OnSkillTwoUp;
         }
 
         public void Describe()
@@ -77,18 +94,42 @@ namespace Stage
             moveAction.performed -= OnMove;
             jumpAction.performed -= OnJump;
 
-            mainFireAction.performed -= OnMainFire;
-            subFireAction.performed -= OnSubFire;
+            //TODO Weapon, Skill을 InputSystem 기반으로 리팩토링 할 때 수정 필요. (아마 그냥 삭제하면 될 듯. WeaponActionReceiver에서 입력 처리 할테니까.)
+            mainFireAction.started -= OnMainDown;
+            mainFireAction.performed -= OnMainHold;
+            mainFireAction.canceled -= OnMainUp;
 
-            skillOneAction.performed -= OnSkillOne;
-            skillTwoAction.performed -= OnSkillTwo;
+            subFireAction.started -= OnSubDown;
+            subFireAction.performed -= OnSubHold;
+            subFireAction.canceled -= OnSubUp;
+
+            skillOneAction.started -= OnSkillOneDown;
+            skillOneAction.performed -= OnSkillOneHold;
+            skillOneAction.canceled -= OnSkillOneUp;
+
+            skillTwoAction.started -= OnSkillTwoDown;
+            skillTwoAction.performed -= OnSkillTwoHold;
+            skillTwoAction.canceled -= OnSkillTwoUp;
         }
 
         private void OnMove(InputAction.CallbackContext val) => playerMovement.OnMove(val.ReadValue<Vector2>());
         private void OnJump(InputAction.CallbackContext val) => playerMovement.OnJump();
-        private void OnMainFire(InputAction.CallbackContext val) => playerMovement.OnMainFire();
-        private void OnSubFire(InputAction.CallbackContext val) => playerMovement.OnSubFire();
-        private void OnSkillOne(InputAction.CallbackContext val) => playerMovement.OnSkillOne();
-        private void OnSkillTwo(InputAction.CallbackContext val) => playerMovement.OnSkillTwo();
+        
+        //TODO Weapon, Skill을 InputSystem 기반으로 리팩토링 할 때 수정 필요. (아마 그냥 삭제하면 될 듯. WeaponActionReceiver에서 입력 처리 할테니까.)
+        private void OnMainDown(InputAction.CallbackContext val){}
+        private void OnMainHold(InputAction.CallbackContext val){}
+        private void OnMainUp(InputAction.CallbackContext val){}
+
+        private void OnSubDown(InputAction.CallbackContext val){}
+        private void OnSubHold(InputAction.CallbackContext val){}
+        private void OnSubUp(InputAction.CallbackContext val){}
+
+        private void OnSkillOneDown(InputAction.CallbackContext val){}
+        private void OnSkillOneHold(InputAction.CallbackContext val){}
+        private void OnSkillOneUp(InputAction.CallbackContext val){}
+
+        private void OnSkillTwoDown(InputAction.CallbackContext val){}
+        private void OnSkillTwoHold(InputAction.CallbackContext val){}
+        private void OnSkillTwoUp(InputAction.CallbackContext val){}
     }
 }

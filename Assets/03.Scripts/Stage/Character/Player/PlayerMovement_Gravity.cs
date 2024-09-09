@@ -37,7 +37,7 @@ namespace Stage
         //
         protected override void Initiate()
         {
-            rigidbody.bodyType = RigidbodyType2D.Kinematic;
+            rigidbody.bodyType = RigidbodyType2D.Dynamic;
             rigidbody.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         }
 
@@ -52,8 +52,7 @@ namespace Stage
         private void UpdateGrounded()
         {
             RaycastHit2D raycastHit = Physics2D.BoxCast(collider.bounds.center, collider.bounds.size, 0.0f, Vector2.down, 0.01f, LayerMask.GetMask("Ground"));
-            if(raycastHit) isGrounded = true;
-            else           isGrounded = false;
+            isGrounded = raycastHit;
         }
 
         private void LimitFreeFall()
@@ -114,28 +113,5 @@ namespace Stage
         {
             jumpOrder = true;
         }
-
-
-        public override void OnMainFire()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public override void OnSubFire()
-        {
-            throw new System.NotImplementedException();
-        }
-
-
-        public override void OnSkillOne()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public override void OnSkillTwo()
-        {
-            throw new System.NotImplementedException();
-        }
-
     }
 }

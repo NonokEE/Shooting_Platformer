@@ -32,9 +32,5 @@ namespace Stage
     public abstract class PlayerMovement : CharactorMovement
     {
         public abstract void OnJump();
-        public abstract void OnMainFire();
-        public abstract void OnSubFire();
-        public abstract void OnSkillOne();
-        public abstract void OnSkillTwo();
     }
 }

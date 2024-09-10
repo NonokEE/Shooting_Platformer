@@ -55,7 +55,7 @@ public class PlayerControllerLegacy : MonoBehaviour
 
         //DEBUG
         weapon = Instantiate(weaponPrefab, weaponSlot.transform);
-        weapon.AttackInfo.Attacker = player;
+        // weapon.AttackInfo.Attacker = player;
         weapon.Initiate();
     }
 

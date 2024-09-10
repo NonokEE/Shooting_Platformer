@@ -22,6 +22,7 @@ namespace Stage
             hoe_config.Attack = this;
             hoe_config.Damage = Damage;
 
+            BulletMoveType.Bullet = this;
             StraightMove sbm_config = BulletMoveType as StraightMove;
             sbm_config.BulletSpeed = Speed;
             sbm_config.PierceGround = PierceGround;

@@ -7,15 +7,26 @@ namespace Stage
 {
     public abstract class CharacterObject : MonoBehaviour, IKillable, IStageObject
     {
-        [Header("Character Config")]
-        [SerializeField] private HitBox hitBox;
-        public HitBox Hitbox => hitBox;
+            [Header("Character Info")]
+        [SerializeField] protected int maxHp;
+        [SerializeField] protected int currentHp;
+        [SerializeField] protected HitBox hitBox;
 
-        [SerializeField] private int maxHp;
-        public int MaxHp => maxHp;
+        public abstract int MaxHp{ get; }
+        public abstract int CurrentHp{ get; }
+        public abstract HitBox HitBox{ get; }
 
-        [SerializeField] private int currentHp;
-        public int CurrentHp => currentHp;
+        private CharacterInfo characterInfo;
+
+        protected virtual void Awake()
+        {
+            characterInfo = new CharacterInfo
+            {
+                MaxHp = maxHp,
+                CurrentHp = currentHp,
+                HitBox = hitBox
+            };
+        }
 
         //TODO HitFeedback 부분 리팩토링 필요
         public HitFeedback HitFeedback => throw new System.NotImplementedException();
@@ -27,5 +38,17 @@ namespace Stage
                 if(currentHp <= 0) Destroy(gameObject);
             }
         }
+    }
+
+    public class CharacterInfo
+    {
+        protected int maxHp;
+        public int MaxHp { get => maxHp; set => maxHp = value; }
+
+        protected int currentHp;
+        public int CurrentHp { get => currentHp; set => currentHp = value; }
+
+        protected HitBox hitBox;
+        public HitBox HitBox { get => hitBox; set => hitBox = value; }
     }
 }

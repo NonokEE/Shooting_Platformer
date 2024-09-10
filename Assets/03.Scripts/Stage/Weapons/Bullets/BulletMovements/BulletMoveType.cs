@@ -11,15 +11,12 @@ namespace Stage
     /// </summary>
     public abstract class BulletMoveType : MonoBehaviour
     {
-        
-
         protected abstract void InitAction();
         protected virtual void Awake(){ InitAction(); }
 
         public Bullet Bullet{ get => bullet; set => bullet = value; }
         protected Bullet bullet;
         
-
         public Action OnEnterEnemy = () => {};
         public Action OnStayEnemy = () => {};
         public Action OnExitEnemy = () => {};

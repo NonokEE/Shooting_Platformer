@@ -8,7 +8,7 @@ namespace Stage
 {
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(Collider2D))]
-    public abstract class CharactorMovement : MonoBehaviour
+    public abstract class CharacterMovement : MonoBehaviour
     {
         public Rigidbody2D Rigidbody { get => rigidbody; set => rigidbody = value; }
         protected new Rigidbody2D rigidbody;
@@ -29,8 +29,4 @@ namespace Stage
         public abstract void OnMove(Vector2 axis);
     }
 
-    public abstract class PlayerMovement : CharactorMovement
-    {
-        public abstract void OnJump();
-    }
 }

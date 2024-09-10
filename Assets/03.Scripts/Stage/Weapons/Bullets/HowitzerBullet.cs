@@ -22,6 +22,7 @@ namespace Stage
             hoe_config.Attack = this;
             hoe_config.Damage = Damage;
 
+            BulletMoveType.Bullet = this;
             HowitzerMove hwm_config = BulletMoveType as HowitzerMove;
             hwm_config.Force = Speed;
             hwm_config.PierceGround = PierceGround;

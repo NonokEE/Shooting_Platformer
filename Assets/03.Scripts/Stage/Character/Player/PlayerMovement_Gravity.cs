@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Stage
 {
+    [AddComponentMenu("")]
     public class PlayerMovement_Gravity : PlayerMovement
     {
         [Header("PlayerMovement_Gravity : Parameters")]

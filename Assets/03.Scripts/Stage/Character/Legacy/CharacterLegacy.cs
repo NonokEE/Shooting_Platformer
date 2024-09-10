@@ -73,6 +73,6 @@ namespace Stage
         /******* StageObject *******/
         //~ Properties ~//
         private HitBox hitBox;
-        public HitBox Hitbox { get {return hitBox; } }
+        public HitBox HitBox { get {return hitBox; } }
     }
 }

@@ -83,8 +83,6 @@ namespace Stage
         public void Initiate(CharacterLegacy sender)
         {
             this.sender = sender;
-
-            DOTween.Init(true, true, LogBehaviour.Verbose).SetCapacity(200, 10);
         }
     }
 }

@@ -25,6 +25,7 @@ namespace Stage
 
         public override void Initiate()
         {
+            BulletMoveType.Bullet = this;
             ThrowerMove thm_config = BulletMoveType as ThrowerMove;
             thm_config.Force = Speed;
             thm_config.EnemyBounce = PierceEnemy;

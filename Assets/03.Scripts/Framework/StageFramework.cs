@@ -11,7 +11,7 @@ namespace Stage
     /// </summary>
     public interface IStageObject
     {
-        public HitBox Hitbox{ get; }
+        public HitBox HitBox{ get; }
     }
 
     /// <summary>
